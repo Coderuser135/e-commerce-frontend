@@ -4,7 +4,7 @@ import { MdLockReset } from "react-icons/md";
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-import { resetPassword } from '../../Store/slice/auth.reduer.js';
+import { resetPassword } from '../../features/Store/reducers/auth.reducer.js';
 import ButtonLoading from '../../components/ButtonLoading.jsx';
 
 const ResetPassword = () => {

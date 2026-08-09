@@ -4,7 +4,7 @@ import emailIcon from "../../assets/emailIcon.jpg"
 import { MdEmail } from "react-icons/md";
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { sendOtpEmail } from '../../Store/slice/auth.reduer.js';
+import { sendOtpEmail } from '../../features/Store/reducers/auth.reducer.js';
 import { toast } from 'react-toastify';
 import ButtonLoading from '../../components/ButtonLoading.jsx';
 

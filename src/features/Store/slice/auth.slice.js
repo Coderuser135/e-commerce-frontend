@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { login, logout, register, resetPassword, sendOtpEmail, verifyEmail, verifyOtp } from "./auth.reduer.js";
+import { login, logout, register, resetPassword, sendOtpEmail, verifyEmail, verifyOtp } from "../reducers/auth.reducer.js";
 
 const initialState = {
   status: null,

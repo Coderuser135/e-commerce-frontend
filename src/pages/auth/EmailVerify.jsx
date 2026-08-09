@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { verifyEmail, verifyOtp } from "../../Store/slice/auth.reduer.js";
+import { verifyEmail, verifyOtp } from "../../features/Store/reducers/auth.reducer.js";
 import { useNavigate } from "react-router-dom";
 
 const EmailVerify = ({ onComplete }) => {

@@ -10,7 +10,7 @@ import { FaUser } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { useDispatch } from 'react-redux';
-import { register } from '../../Store/slice/auth.reduer.js';
+import { register } from '../../features/Store/reducers/auth.reducer.js';
 import Loading from '../../components/Loading.jsx';
 import { toast } from 'react-toastify';
 import ButtonLoading from '../../components/ButtonLoading.jsx';

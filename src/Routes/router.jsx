@@ -11,6 +11,9 @@ import Home from "../components/Home"
 import RootLayout from "../layouts/RootLayout";
 import SendOtpEmail from "../pages/auth/SentOtpEmail";
 import ResetPassword from "../pages/auth/ResetPassword";
+import AdminRoute from "./AdminRoute";
+import NotFound from "../pages/NotFound";
+import Dashboard from "../pages/admin/Dashboard";
 
 const router = createBrowserRouter([
     {
@@ -70,6 +73,32 @@ const router = createBrowserRouter([
                         ]
                     }
                 ]
+            },
+
+            // Admin Route -- Admin Access 
+            {
+                element: <ProtectRoute />,
+                children: [
+                    {
+                        element: <AdminRoute />,
+                        children: [
+                            {
+                                element: <AuthLayout />,
+                                children: [
+                                    {
+                                        path: "/admin",
+                                        element: <Dashboard />
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            // page not fount route
+            {
+                path: "*",
+                element: <NotFound />
             }
         ]
     }

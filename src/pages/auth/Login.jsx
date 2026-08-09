@@ -7,7 +7,7 @@ import { FaRegEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux';
-import { login } from '../../Store/slice/auth.reduer.js';
+import { login } from '../../features/Store/reducers/auth.reducer.js';
 import { toast } from 'react-toastify';
 import ButtonLoading from '../../components/ButtonLoading.jsx';
 

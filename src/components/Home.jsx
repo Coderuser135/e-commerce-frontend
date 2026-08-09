@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { logout } from '../Store/slice/auth.reduer.js'
+import { logout } from '../features/Store/reducers/auth.reducer.js'
 import { useNavigate } from 'react-router-dom'
 import userImage from "../assets/userImage.jpg"
 

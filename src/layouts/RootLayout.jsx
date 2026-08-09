@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import api from '../configs/api.config.js'
-import { logoutUser, setaccessToken, setUserData } from '../Store/slice/auth.slice.js'
+import {logoutUser, setaccessToken, setUserData } from '../features/Store/slice/auth.slice.js'
+import { logout } from '../features/Store/reducers/auth.reducer.js'
 import Loading from '../components/Loading.jsx'
 import { Outlet } from 'react-router-dom'
 import { ToastContainer } from "react-toastify"
