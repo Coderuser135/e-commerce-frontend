@@ -14,6 +14,7 @@ import ResetPassword from "../pages/auth/ResetPassword";
 import AdminRoute from "./AdminRoute";
 import NotFound from "../pages/NotFound";
 import Dashboard from "../pages/admin/Dashboard";
+import ProductsPage from "../pages/user/ProductsPage";
 
 const router = createBrowserRouter([
     {
@@ -67,8 +68,8 @@ const router = createBrowserRouter([
                         element: <App />,
                         children: [
                             {
-                                path: "/home",
-                                element: <Home />
+                                path: "products",
+                                element: <ProductsPage />
                             }
                         ]
                     }
