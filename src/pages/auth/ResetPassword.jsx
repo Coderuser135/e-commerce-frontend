@@ -16,6 +16,7 @@ const ResetPassword = () => {
         confirmPassword: "",
         showPassword: ""
     })
+    console.log(inputData)
     const { newPassword, confirmPassword, showPassword } = inputData
     const email = JSON.parse(localStorage.getItem("otpEmail"))
     const inputHandler = (e) => {
