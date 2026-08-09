@@ -11,9 +11,6 @@ const Home = () => {
   console.log(user)
   const logoutHandler = async () => {
     const response = await dispatch(logout()).unwrap()
-    if(response === 200){
-      window.location.reload()
-    }
   }
     return (
         <div className='min-h-screen min-w-screen flex flex-col justify-center items-center bg-[#666565] gap-2'>
