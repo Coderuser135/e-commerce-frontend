@@ -65,23 +65,27 @@ const Signup = () => {
     }
   }
   return (
-    <div className={`min-h-screen max-w-screen bg-[#8FA28A] flex flex-col justify-center items-center`}>
-      <div className='pb-4 w-70 border-bl-2 bg-[#19445a] border-br-2 border-solid  border-[#dad2d2] rounded-xl shadow-2xl active:scale-105 transition-all duration-75'>
+    /* Responsive update: keep the signup page centered with safe mobile padding and natural vertical scrolling. */
+    <div className={`min-h-screen w-full bg-[#8FA28A] flex flex-col justify-center items-center px-4 py-6 sm:px-6`}>
+      {/* Responsive update: make the signup card fluid on phones while retaining a readable maximum width. */}
+      <div className='pb-5 w-full max-w-[17.5rem] sm:max-w-[19rem] border-bl-2 bg-[#19445a] border-br-2 border-solid border-[#dad2d2] rounded-xl shadow-2xl active:scale-105 transition-all duration-75 overflow-hidden'>
         {/* lock icon */}
-        <div className='h-36 w-full rounded-tl-xl rounded-tr-xl flex flex-col justify-center mb-4 gap-2'>
+        {/* Responsive update: scale the header/icon and heading for mobile readability. */}
+        <div className='h-32 sm:h-36 w-full rounded-tl-xl rounded-tr-xl flex flex-col justify-center mb-4 gap-2'>
           <div className='h-5 w-full mt-5 flex justify-center items-center'>
-            <h1 className='text-2xl text-white font-sans'>SIGN UP</h1>
+            <h1 className='text-xl sm:text-2xl text-white font-sans'>SIGN UP</h1>
           </div>
           <div className='w-full flex justify-center'>
             <div className='h-20 w-20 bg-[#D3D4C0] mt-2'>
               <div>
-                <img src={signupIcon} className='aspect-square object-contain rounded-full' />
+                <img src={signupIcon} className='w-full h-full aspect-square object-contain rounded-full' />
               </div>
             </div>
           </div>
         </div>
         {/* input fields */}
-        <div className='w-full px-4 flex flex-col gap-2'>
+        {/* Responsive update: use full-width controls with comfortable mobile tap height and responsive text sizing. */}
+        <div className='w-full px-4 sm:px-5 flex flex-col gap-2'>
           {/* fullName fields */}
           <div className='flex relative'>
             {/* email icon */}
@@ -94,7 +98,7 @@ const Signup = () => {
               value={fullName}
               onChange={inputDataHandler}
               name="fullName"
-              className='h-9 w-full border-[1.5px] rounded-lg border-white bg-white px-8 focus:outline-none' />
+              className='h-10 w-full min-w-0 border-[1.5px] rounded-lg border-white bg-white px-8 text-sm sm:text-base focus:outline-none' />
           </div>
           {/* email fields */}
           <div className='flex relative'>
@@ -108,7 +112,7 @@ const Signup = () => {
               name='email'
               value={email}
               onChange={inputDataHandler}
-              className='h-9 w-full border-[1.5px] rounded-lg border-white bg-white px-8 focus:outline-none' />
+              className='h-10 w-full min-w-0 border-[1.5px] rounded-lg border-white bg-white px-8 text-sm sm:text-base focus:outline-none' />
           </div>
           {/* password fields */}
           <div className='flex relative'>
@@ -122,20 +126,22 @@ const Signup = () => {
               name='password'
               value={password}
               onChange={inputDataHandler}
-              className='h-9 w-full border-[1.5px] rounded-lg border-white bg-white px-8 focus:outline-none' />
+              className='h-10 w-full min-w-0 border-[1.5px] rounded-lg border-white bg-white px-8 pr-10 text-sm sm:text-base focus:outline-none' />
             {/* show password icon */}
             <div className='absolute top-2.25 right-2'>
-              <button onClick={showPasswordHandler} className='text-xl text-gray-500'>{showPassword ? <FaRegEye /> : <FaEyeSlash />}</button>
+              <button onClick={showPasswordHandler} className='text-xl text-gray-500 p-0.5'>{showPassword ? <FaRegEye /> : <FaEyeSlash />}</button>
             </div>
           </div>
           {/* Login button */}
           <div>
-            <button onClick={registerAccountHandler} disabled={loading} className='py-1.5 w-full rounded-2xl text-[16px] text-[#E1E100] bg-[#FF8F00] mt-2 font-medium'>{loading === true ? <ButtonLoading /> : "Create Account"}</button>
+            {/* Responsive update: make the primary action touch-friendly and consistent across phone/tablet/desktop. */}
+            <button onClick={registerAccountHandler} disabled={loading} className='py-2 min-h-10 w-full rounded-2xl text-sm sm:text-[16px] text-[#E1E100] bg-[#FF8F00] mt-2 font-medium'>{loading === true ? <ButtonLoading /> : "Create Account"}</button>
           </div>
           {/* singup routes */}
-          <div className='h-full w-full flex justify-center items-center'>
+          <div className='h-full w-full flex justify-center items-center text-center px-1 pb-1'>
             <div>
-              <h1 className='text-[13.5px] font-sans text-gray-600'>Already have an account? <Link to={"/login"} className='text-[#FF8F00]'>Login here</Link></h1>
+              {/* Responsive update: allow the account message to wrap cleanly on narrow screens. */}
+              <h1 className='text-xs sm:text-[13.5px] leading-5 font-sans text-gray-600'>Already have an account? <Link to={"/login"} className='text-[#FF8F00]'>Login here</Link></h1>
             </div>
           </div>
         </div>
