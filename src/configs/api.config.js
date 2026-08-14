@@ -3,11 +3,7 @@ import axios from "axios"
 const api = axios.create({
     baseURL: "",
     withCredentials: true,
-    timeout: 15000,
-    headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-    }
+    timeout: 15000
 })
 
 export default api

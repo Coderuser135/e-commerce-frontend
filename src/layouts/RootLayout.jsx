@@ -16,7 +16,6 @@ const RootLayout = () => {
     const isAuthorized = async () => {
       try {
         const refreshToken = await api.get("/api/auth/refresh-token", { withCredentials: true })
-        console.log(refreshToken)
         dispatch(setaccessToken(refreshToken.data?.data?.accessToken))
         dispatch(setUserData(refreshToken.data?.data))
       } catch (error) {
@@ -34,7 +33,7 @@ const RootLayout = () => {
   return (
     <>
       <Outlet />
-      <ToastContainer position='top-right' autoClose={3500}/>
+      <ToastContainer position='top-right' autoClose={2200}/>
     </>
   )
 }

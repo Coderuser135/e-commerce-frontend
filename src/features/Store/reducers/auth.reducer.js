@@ -146,3 +146,17 @@ export const resetPassword = createAsyncThunk(
     }
   },
 );
+
+export const refreshTokenUser = createAsyncThunk(
+  "auth/refreshTokenUser",
+  async (_, { rejectWithValue }) => {
+    try {
+      const userData = await api.get("/api/auth/refresh-token", {
+        withCredentials: true,
+      });
+      return userData.data?.data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);

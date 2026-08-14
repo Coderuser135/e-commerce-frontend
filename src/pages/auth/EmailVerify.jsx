@@ -2,9 +2,11 @@ import React, { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { verifyEmail, verifyOtp } from "../../features/Store/reducers/auth.reducer.js";
 import { useNavigate } from "react-router-dom";
+import ButtonLoading from "../../components/ButtonLoading.jsx";
 
 const EmailVerify = ({ onComplete }) => {
     const [otp, setOtp] = useState(new Array(6).fill(""));
+    const loading = useSelector(state => state.auth.loading)
     const dispatch = useDispatch()
     const nevigate = useNavigate()
     const email = JSON.parse(localStorage.getItem("email"))
@@ -139,7 +141,7 @@ const EmailVerify = ({ onComplete }) => {
                             : "bg-gray-100 text-gray-400 cursor-not-allowed"
                             }`}
                     >
-                        Verify OTP
+                        {loading === true ? <ButtonLoading /> : "Verify OTP"}
                     </button>
                 </div>
             </div>

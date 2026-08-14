@@ -4,9 +4,8 @@ import { Navigate, Outlet } from 'react-router-dom'
 
 const PublicRoute = () => {
     const token = useSelector(state => state.auth.token)
-    console.log(token)
     if (token) {
-        return <Navigate to={"/home"} replace />
+        return <Navigate to={"/products"} replace />
     }
     return <Outlet />
 }

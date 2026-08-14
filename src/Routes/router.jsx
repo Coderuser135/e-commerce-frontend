@@ -15,6 +15,18 @@ import AdminRoute from "./AdminRoute";
 import NotFound from "../pages/NotFound";
 import Dashboard from "../pages/admin/Dashboard";
 import ProductsPage from "../pages/user/ProductsPage";
+import ProductsCategoryPage from "../pages/user/ProductsCategoryPage";
+import SingleProductsPage from "../pages/user/SingleProductsPage";
+import AllProductsCategory from "../pages/user/AllProductsCategory";
+import AllProductsPage from "../pages/user/AllProductsPage";
+import ProfilePage from "../pages/user/ProfilePage";
+import AdminLayout from "../layouts/AdminLayout";
+import AdminPannel from "../pages/admin/AdminPannel";
+import CreateProductsCard from "../pages/admin/CreateProductsCard";
+import AdminProductsPage from "../pages/admin/AdminProductsPage";
+import AdminProductsCategory from "../pages/admin/AdminProductsCategory";
+import AdminSingleProductsCategory from "../pages/admin/AdminSingleProductsCategory";
+import EditPopup from "../components/EditPopup";
 
 const router = createBrowserRouter([
     {
@@ -68,8 +80,28 @@ const router = createBrowserRouter([
                         element: <App />,
                         children: [
                             {
-                                path: "products",
+                                path: "/products",
                                 element: <ProductsPage />
+                            },
+                            {
+                                path: "/products/:id",
+                                element: <SingleProductsPage />
+                            },
+                            {
+                                path: "/products-category",
+                                element: <AllProductsCategory />
+                            },
+                            {
+                                path: "/products-category/:category",
+                                element: <ProductsCategoryPage />
+                            },
+                            {
+                                path: "/products-all",
+                                element: <AllProductsPage />
+                            },
+                            {
+                                path: "/my-profile",
+                                element: <ProfilePage />
                             }
                         ]
                     }
@@ -84,11 +116,35 @@ const router = createBrowserRouter([
                         element: <AdminRoute />,
                         children: [
                             {
-                                element: <AuthLayout />,
+                                element: <AdminLayout />,
                                 children: [
                                     {
-                                        path: "/admin",
+                                        path: "/adminPannel",
+                                        element: <Navigate to={"/adminPannel/dashboard"}/>
+                                    },
+                                    {
+                                        path: "/adminPannel/dashboard",
                                         element: <Dashboard />
+                                    },
+                                    {
+                                        path: "/adminPannel/create-products",
+                                        element: <CreateProductsCard />
+                                    },
+                                    {
+                                        path: "/adminPannel/all-products",
+                                        element: <AdminProductsPage />
+                                    },
+                                    {
+                                        path: "/adminPannel/products-category",
+                                        element: <AdminProductsCategory />
+                                    },
+                                    {
+                                        path: "/adminPannel/products-category/:category",
+                                        element: <AdminSingleProductsCategory />
+                                    },
+                                    {
+                                        path: "/adminPannel/products-update",
+                                        element: <EditPopup />
                                     }
                                 ]
                             }

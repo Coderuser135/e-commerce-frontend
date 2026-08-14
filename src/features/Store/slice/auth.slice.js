@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { login, logout, register, resetPassword, sendOtpEmail, verifyEmail, verifyOtp } from "../reducers/auth.reducer.js";
+import { login, logout, refreshTokenUser, register, resetPassword, sendOtpEmail, verifyEmail, verifyOtp } from "../reducers/auth.reducer.js";
 
 const initialState = {
   status: null,
@@ -137,6 +137,21 @@ const authSlice = createSlice({
       state.error = null
     })
     .addCase(resetPassword.rejected, (state, action) => {
+      state.loading = false,
+      state.error = action.payload
+    });
+    // refresh token
+      Builder
+    .addCase(refreshTokenUser.pending, (state, action) => {
+      state.loading = true,
+      state.error = null
+    })
+    .addCase(refreshTokenUser.fulfilled, (state, action) => {
+      state.loading = false,
+      state.user = action.payload,
+      state.error = null
+    })
+    .addCase(refreshTokenUser.rejected, (state, action) => {
       state.loading = false,
       state.error = action.payload
     });

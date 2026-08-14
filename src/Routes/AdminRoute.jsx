@@ -5,10 +5,9 @@ import { toast } from 'react-toastify'
 
 const AdminRoute = () => {
     const user = useSelector(state => state.auth.user)
-    console.log(user)
     if(user.role !== "admin"){
-        toast.error("This Data Only Admin Access")
-        return <Navigate to={"/home"}/>
+        toast.error("This Page Only Admin Access")
+        return <Navigate to={"/products"}/>
     }
     return <Outlet />
 }
