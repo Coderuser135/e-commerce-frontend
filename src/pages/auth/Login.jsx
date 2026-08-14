@@ -47,21 +47,25 @@ const Login = () => {
     nevigate("/sendOtp-email")
   }
   return (
-    <div className={`min-h-screen max-w-screen bg-[#FFE2E2] flex flex-col justify-center items-center`}>
-      <div className='h-95 w-70 border-bl-2 border-br-2 border-solid  border-[#dad2d2] rounded-xl shadow-2xl bg-[#eedcdc] active:scale-105 transition-all duration-75 relative'>
+    /* Responsive update: keep the login page viewport-safe with mobile-friendly horizontal padding. */
+    <div className={`min-h-screen w-full bg-[#FFE2E2] flex flex-col justify-center items-center px-4 py-6 sm:px-6`}>
+      {/* Responsive update: login card uses fluid width on phones and the original capped width on larger screens. */}
+      <div className='w-full max-w-[17.5rem] sm:max-w-[19rem] border-bl-2 border-br-2 border-solid border-[#dad2d2] rounded-xl shadow-2xl bg-[#eedcdc] active:scale-105 transition-all duration-75 relative overflow-hidden'>
         {/* lock icon */}
-        <div className='h-28 w-full border-2 border-solid border-blue-600 bg-blue-600 rounded-tl-xl rounded-tr-xl flex justify-center mb-16'>
+        {/* Responsive update: scale the header and icon slightly for smaller screens while preserving the original visual hierarchy. */}
+        <div className='h-28 sm:h-32 w-full border-2 border-solid border-blue-600 bg-blue-600 rounded-tl-xl rounded-tr-xl flex justify-center mb-16'>
           <div className='h-5 w-full mt-5 flex justify-center items-center'>
-            <h1 className='text-2xl text-white font-sans'>LOGIN</h1>
+            <h1 className='text-xl sm:text-2xl text-white font-sans'>LOGIN</h1>
           </div>
-          <div className='h-25 w-25 bg-[#D3D4C0] rounded-full absolute top-15'>
+          <div className='h-24 w-24 sm:h-25 sm:w-25 bg-[#D3D4C0] rounded-full absolute top-14 sm:top-15'>
             <div>
-              <img src={lockIcon} className='aspect-square object-contain rounded-full' />
+              <img src={lockIcon} className='w-full h-full aspect-square object-contain rounded-full' />
             </div>
           </div>
         </div>
         {/* input fields */}
-        <div className='w-full px-4 flex flex-col gap-2'>
+        {/* Responsive update: keep form controls comfortably sized and full-width within the mobile card. */}
+        <div className='w-full px-4 sm:px-5 flex flex-col gap-2 pb-5'>
           {/* email fields */}
           <div className='flex relative'>
             {/* email icon */}
@@ -74,7 +78,7 @@ const Login = () => {
               name='email'
               value={email}
               onChange={inputDataHandler}
-              className='h-9 w-full border-[1.5px] rounded-[5px] border-[#979595] px-8 focus:outline-none' />
+              className='h-10 w-full min-w-0 border-[1.5px] rounded-[5px] border-[#979595] px-8 text-sm sm:text-base focus:outline-none' />
           </div>
           {/* password fields */}
           <div className='flex flex-col relative'>
@@ -88,23 +92,26 @@ const Login = () => {
               name='password'
               value={password}
               onChange={inputDataHandler}
-              className='h-9 w-full border-[1.5px] rounded-[5px] border-[#979595] px-8 focus:outline-none' />
+              className='h-10 w-full min-w-0 border-[1.5px] rounded-[5px] border-[#979595] px-8 pr-10 text-sm sm:text-base focus:outline-none' />
             {/* show password icon */}
             <div className='absolute top-2.25 right-2'>
-              <button onClick={showPasswordHandler} className='text-xl text-gray-500'>{showPassword ? <FaRegEye /> : <FaEyeSlash />}</button>
+              <button onClick={showPasswordHandler} className='text-xl text-gray-500 p-0.5'>{showPassword ? <FaRegEye /> : <FaEyeSlash />}</button>
             </div>
             <div className='flex justify-end'>
-              <button onClick={sendOtpEmailRouteHandler} className='text-[15px] font-sans mt-[1.5px] text-gray-600'>Forget password?</button>
+              {/* Responsive update: keep the recovery action readable without increasing the card width on mobile. */}
+              <button onClick={sendOtpEmailRouteHandler} className='text-sm sm:text-[15px] font-sans mt-[1.5px] text-gray-600 py-1'>Forget password?</button>
             </div>
           </div>
           {/* Login button */}
           <div>
-            <button disabled={loading} onClick={loginHandler} className='py-1.5 w-full border rounded-2xl text-[16px] text-white bg-blue-500 mt-2 font-medium'>{loading === true ? <ButtonLoading /> : "Login"}</button>
+            {/* Responsive update: use a touch-friendly button height on mobile. */}
+            <button disabled={loading} onClick={loginHandler} className='py-2 w-full min-h-10 border rounded-2xl text-sm sm:text-[16px] text-white bg-blue-500 mt-2 font-medium'>{loading === true ? <ButtonLoading /> : "Login"}</button>
           </div>
           {/* singup routes */}
-          <div className='h-full w-full flex justify-center items-center'>
+          <div className='h-full w-full flex justify-center items-center text-center px-1'>
             <div>
-              <h1 className='text-[13.5px] font-sans text-gray-600'>Don't have an account? <Link to={"/"} className='text-blue-600'>Sign up here</Link></h1>
+              {/* Responsive update: allow the signup message to wrap naturally on narrow screens. */}
+              <h1 className='text-xs sm:text-[13.5px] font-sans text-gray-600 leading-5'>Don't have an account? <Link to={"/"} className='text-blue-600'>Sign up here</Link></h1>
             </div>
           </div>
         </div>
