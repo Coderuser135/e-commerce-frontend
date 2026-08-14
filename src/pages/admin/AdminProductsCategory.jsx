@@ -13,28 +13,29 @@ const AdminProductsCategory = () => {
     }
     return (
         <>
-            <div className='flex flex-col px-6 mb-5'>
+            {/* Responsive update: keep the admin category content inside the viewport on small screens. */}
+            <div className='flex flex-col w-full min-w-0 px-3 sm:px-5 lg:px-6 mb-5 overflow-x-hidden'>
                 <div>
-                    <h1 className='text-xl font-serif py-4'>All Catrogry</h1>
+                    {/* Responsive update: scale the admin heading for mobile while retaining the larger desktop size. */}
+                    <h1 className='text-lg sm:text-xl font-serif py-3 sm:py-4'>All Catrogry</h1>
                 </div>
-                <div className={`${menuBar === true ? `grid grid-cols-4 gap-4  m-auto w-full z-10`: `grid grid-cols-5 gap-4  m-auto w-full z-10`}`}>
+                {/* Responsive update: use 2 columns on phones, 3 on tablets, and adapt desktop columns to the sidebar state. */}
+                <div className={`${menuBar === true ? `grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 m-auto w-full z-10`: `grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4 m-auto w-full z-10`}`}>
                     {upiqueCategory.map((item, index) => {
                         const findImage = productsStore.find(products => products.category === item)?.image;
                         return (
-                            
-                                <div onClick={() => {
-                                    productsCategoryHandler(item)
-                                }} key={index} className='h-62 w-54 flex flex-col mb-4 rounded-xl shadow-2xl'>
-                                    {/* Products List Category Image */}
-                                    <div className='h-50 w-full rounded-tl-xl rounded-tr-xl flex justify-center bg-[#cac8c8]'>
-                                        <img src={findImage} className='aspect-square object-contain rounded-2xl' />
-                                    </div>
-                                    <div className='flex-1 rounded-bl-xl rounded-br-xl flex justify-center items-center bg-[#f0ebeb]'>
-                                        <h1 className='text-xl font-medium'>{item.toUpperCase()}</h1>
-                                    </div>
+                            <div onClick={() => {
+                                productsCategoryHandler(item)
+                            }} key={index} className='h-52 sm:h-62 w-full min-w-0 flex flex-col mb-2 sm:mb-4 rounded-xl shadow-2xl overflow-hidden'>
+                                {/* Responsive update: make the image area fluid so it follows the card width on mobile. */}
+                                <div className='h-36 sm:h-50 w-full rounded-tl-xl rounded-tr-xl flex justify-center bg-[#cac8c8] shrink-0'>
+                                    <img src={findImage} className='w-full h-full aspect-square object-contain rounded-2xl' />
                                 </div>
-
-                            
+                                <div className='flex-1 min-w-0 rounded-bl-xl rounded-br-xl flex justify-center items-center bg-[#f0ebeb] px-2'>
+                                    {/* Responsive update: reduce category typography on mobile and safely wrap long names. */}
+                                    <h1 className='text-sm sm:text-xl font-medium text-center break-words'>{item.toUpperCase()}</h1>
+                                </div>
+                            </div>
                         )
                     })}
                 </div>
