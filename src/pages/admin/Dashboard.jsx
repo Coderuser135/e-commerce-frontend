@@ -6,8 +6,8 @@ import { FaEdit } from "react-icons/fa";
 import { MdOutlineEdit, MdOutlineDelete, MdOutlineStar } from "react-icons/md";
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
-import { setEditDataStore, setCloseDeletePopup, setDeletePopup } from '../../features/Store/slice/admin.slice';
-import { deleteProducts } from '../../features/Store/reducers/admin.reducer';
+import { setEditDataStore, setCloseDeletePopup, setDeletePopup } from '../../features/Store/slice/admin.slice.js';
+import { deleteProducts } from '../../features/Store/reducers/admin.reducer.js';
 
 const AdminPannelHomePage = () => {
   const productsStore = useSelector(state => state.products.productsStore)

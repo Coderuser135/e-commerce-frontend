@@ -55,4 +55,4 @@ const admin = createSlice({
 });
 
 export default admin.reducer;
-export const { setMenuBar, setDeletePopup, deletePopup, setEditDataStore } = admin.actions;
+export const { setMenuBar, setDeletePopup, deletePopup, setEditDataStore, setCloseDeletePopup } = admin.actions;

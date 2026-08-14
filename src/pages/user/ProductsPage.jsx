@@ -212,20 +212,19 @@ const ProductsCategory = () => {
       {upiqueCategory.slice(0, 4).map((item) => {
         const findImage = productsStore.find(products => products.category === item)?.image;
         return (
-          {/* Responsive update: category card width fills its responsive grid column instead of using a fixed width. */}
-          <div onClick={() => {
-            productsCategoryHandler(item)
-            console.log(item)
-          }} key={item} className='h-52 sm:h-62 w-full min-w-0 flex flex-col rounded-xl shadow-2xl overflow-hidden'>
-            {/* Products List Category Image */}
-            <div className='h-40 sm:h-50 w-full rounded-tl-xl rounded-tr-xl flex justify-center bg-[#cac8c8]'>
-              <img key={item.id} src={findImage} className='w-full h-full aspect-square object-contain rounded-2xl' />
-            </div>
-            <div className='flex-1 rounded-bl-xl rounded-br-xl flex justify-center items-center bg-[#f0ebeb] px-2'>
-              {/* Responsive update: category label scales down and wraps safely on narrow screens. */}
-              <h1 className='text-sm sm:text-xl font-medium text-center break-words'>{item.toUpperCase()}</h1>
-            </div>
-          </div>
+          /* Responsive update: category card width fills its responsive grid column instead of using a fixed width. */ 
+          < div onClick={() => {
+        productsCategoryHandler(item)
+      }} key={item} className='h-52 sm:h-62 w-full min-w-0 flex flex-col rounded-xl shadow-2xl overflow-hidden'>
+      {/* Products List Category Image */}
+      <div className='h-40 sm:h-50 w-full rounded-tl-xl rounded-tr-xl flex justify-center bg-[#cac8c8]'>
+        <img key={item.id} src={findImage} className='w-full h-full aspect-square object-contain rounded-2xl' />
+      </div>
+      <div className='flex-1 rounded-bl-xl rounded-br-xl flex justify-center items-center bg-[#f0ebeb] px-2'>
+        {/* Responsive update: category label scales down and wraps safely on narrow screens. */}
+        <h1 className='text-sm sm:text-xl font-medium text-center break-words'>{item.toUpperCase()}</h1>
+      </div>
+    </div >
         )
       })}
     </>
