@@ -19,7 +19,6 @@ const ProductsPage = () => {
   const nevigate = useNavigate()
   const ProductsStore = useSelector(state => state.products.productsStore)
   const errorMessage = useSelector(state => state.products.error)
-  console.log(errorMessage)
   const seeAllProductsHandler = () => {
     nevigate('/products-all')
   }
@@ -218,7 +217,7 @@ const ProductsCategory = () => {
       }} key={item} className='h-52 sm:h-62 w-full min-w-0 flex flex-col rounded-xl shadow-2xl overflow-hidden'>
       {/* Products List Category Image */}
       <div className='h-40 sm:h-50 w-full rounded-tl-xl rounded-tr-xl flex justify-center bg-[#cac8c8]'>
-        <img key={item._id} src={findImage} className='w-full h-full aspect-square object-contain rounded-2xl' />
+        <img src={findImage} className='w-full h-full aspect-square object-contain rounded-2xl' />
       </div>
       <div className='flex-1 rounded-bl-xl rounded-br-xl flex justify-center items-center bg-[#f0ebeb] px-2'>
         {/* Responsive update: category label scales down and wraps safely on narrow screens. */}
@@ -262,7 +261,8 @@ const ProductSlider = ({ products }) => {
         className="flex gap-3 sm:gap-4 overflow-x-auto scroll-smooth py-2 px-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
       >
         {products.slice(0, 20).map((product) => (
-          <div key={product._id} className="shrink-0 w-[calc(50vw-1.25rem)] max-w-[15rem] min-w-[10.5rem] sm:w-[15rem]">
+          <div key={product._id} className="shrink-0 w-[calc(50vw-1.25rem)] max-w-[15rem] min-w-[10.5rem]
+           sm:w-[15rem]">
             <Card details={product} />
           </div>
         ))}

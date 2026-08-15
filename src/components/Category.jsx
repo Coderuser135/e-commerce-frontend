@@ -28,7 +28,6 @@ const Category = () => {
                 </div>
                 {singleProductsCategory.slice(0, 10).map((item) => {
                     const findProductsImage = productsDetails.find(products => products.category === item)?.image
-                    console.log(findProductsImage)
                     return (
                         <div key={item} onClick={() => {
                             categoryHandler(item)
