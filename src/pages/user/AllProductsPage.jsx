@@ -21,7 +21,7 @@ const AllProductsPage = () => {
         <div className='w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 m-auto justify-items-center'>
           {productsStore.map((item) => {
             return (
-              <div key={item._id} className='w-full flex justify-center min-w-0'>
+              <div key={item?._id} className='w-full flex justify-center min-w-0'>
                 <Card details={item} />
               </div>
             )

@@ -18,10 +18,10 @@ const AdminProductsPage = () => {
       {deletePopup && <DeletePopups />}
       <div>
         {/* Responsive update: scale the product count heading for mobile. */}
-        <h1 className='font-serif text-lg sm:text-xl'>All Products: ({productsStore.length})</h1>
+        <h1 className='font-serif text-lg sm:text-xl'>All Products: ({productsStore?.length})</h1>
       </div>
       {
-        productsStore.length === 0 ? (<div className='min-h-[60vh] w-full flex justify-center items-center'>
+        productsStore?.length === 0 ? (<div className='min-h-[60vh] w-full flex justify-center items-center'>
           {/* Responsive update: use a smaller empty-state heading on narrow screens. */}
           <h1 className='text-xl sm:text-2xl font-bold font-serif text-[#222121]'>NO Products</h1>
         </div>) : null
@@ -30,7 +30,7 @@ const AdminProductsPage = () => {
       <div className={`${menuBar === true ? `gap-3 sm:gap-4 grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4`: `gap-3 sm:gap-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5`}`}>
         {productsStore.map((item) => {
           return (
-            <ProductsCard key={item._id} details={item} />
+            <ProductsCard key={item?._id} details={item} />
           )
         })}
       </div>
@@ -68,14 +68,14 @@ const ProductsCard = ({ details }) => {
         {/* Products Images */}
         {/* Responsive update: keep product images inside the fluid card width on mobile. */}
         <div className='h-36 sm:h-40 w-full flex justify-center bg-[#eceaea] shrink-0'>
-          <img src={details.image} className='w-full h-full aspect-square object-contain' />
+          <img src={details?.image} className='w-full h-full aspect-square object-contain' />
         </div>
         {/* Products Details */}
         <div className='flex-1 min-w-0 rounded-bl-[10px] rounded-br-[10px] flex flex-col gap-1 px-2'>
           {/* Products Rating */}
           <div className='flex justify-between items-center w-16 bg-[#dad6d6] relative bottom-8.5 left-px px-2 rounded-[5px] shadow-2xl gap-[3.5px] shrink-0'>
             <div>
-              <h1 className='font-bold'>{details.rating}</h1>
+              <h1 className='font-bold'>{details?.rating}</h1>
             </div>
             <div>
               <h1><MdOutlineStar className='text-[green]' /></h1>
@@ -84,21 +84,21 @@ const ProductsCard = ({ details }) => {
           {/* Products Title */}
           <div className='bottom-4 relative min-w-0'>
             {/* Responsive update: allow product titles to shrink/wrap safely on narrow cards. */}
-            <h1 className='text-gray font-serif truncate w-full text-sm sm:text-base'>{details.title}</h1>
+            <h1 className='text-gray font-serif truncate w-full text-sm sm:text-base'>{details?.title}</h1>
           </div>
           {/* Products Description */}
           <div className='min-w-0'>
             {/* Responsive update: use available card width instead of a fixed description width. */}
-            <h1 className='truncate w-full font-serif relative bottom-4 text-xs sm:text-[15px] text-[#252525]'>{details.description}</h1>
+            <h1 className='truncate w-full font-serif relative bottom-4 text-xs sm:text-[15px] text-[#252525]'>{details?.description}</h1>
           </div>
           {/* Products Price */}
           {/* Responsive update: keep prices compact and readable on small product cards. */}
           <div className='flex justify-between items-center w-full max-w-[6rem] relative bottom-2 text-base sm:text-xl gap-2 shrink-0'>
             <div>
-              <h1 className='line-through text-[#5a5858] font-extralight'>₹{details.orginalPrice}</h1>
+              <h1 className='line-through text-[#5a5858] font-extralight'>₹{details?.orginalPrice}</h1>
             </div>
             <div>
-              <h1 className='text-[#1a1919]'>₹{details.discountPrice}</h1>
+              <h1 className='text-[#1a1919]'>₹{details?.discountPrice}</h1>
             </div>
           </div>
           {/* Responsive update: make the admin ADD button fill the card instead of using a fixed desktop-only width. */}
@@ -118,7 +118,7 @@ export const DeletePopups = () => {
     dispatch(setCloseDeletePopup())
   }
   const deleteProductsHandler = async () => {
-    await dispatch(deleteProducts(deletePopup._id))
+    await dispatch(deleteProducts(deletePopup?._id))
     dispatch(setCloseDeletePopup())
 
   }

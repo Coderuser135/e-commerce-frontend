@@ -15,7 +15,7 @@ const SingleProductsPage = () => {
   const params = useParams()
   const nevigate = useNavigate()
   const productsCategoryId = productsStore.filter((item) => {
-    if(params.id === item._id){
+    if(params.id === item?._id){
       return{
         item
       }
@@ -23,7 +23,7 @@ const SingleProductsPage = () => {
   })
   console.log(productsCategoryId)
   const filterProductsCategory = productsStore.filter((item) => {
-    if(productsCategoryId[0].category === item.category){
+    if(productsCategoryId[0].category === item?.category){
       return{
         item
       }
@@ -113,7 +113,7 @@ const SingleProductsPage = () => {
           <div className='h-full w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 justify-items-center'>
             {filterProductsCategory.slice(0, 8).map((item) => {
               return(
-                <div key={item._id} className='w-full min-w-0 flex justify-center'>
+                <div key={item?._id} className='w-full min-w-0 flex justify-center'>
                   <Card details={item}/>
                 </div>
               )

@@ -12,7 +12,7 @@ import { deleteProducts } from '../../features/Store/reducers/admin.reducer.js';
 const AdminPannelHomePage = () => {
   const productsStore = useSelector(state => state.products.productsStore)
   const deletePopup = useSelector(state => state.admin.deletePopup)
-  const productsCategory = [...new Set(productsStore.map((item) => item.category))]
+  const productsCategory = [...new Set(productsStore.map((item) => item?.category))]
   const nevigate = useNavigate()
   return (
     <div className='min-h-[90vh] h-full w-full p-3 sm:p-5 flex flex-col gap-2 mb-20 overflow-x-hidden'>

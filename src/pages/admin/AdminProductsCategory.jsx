@@ -5,7 +5,7 @@ import BackButton from '../../components/BackButton'
 
 const AdminProductsCategory = () => {
     const productsStore = useSelector(state => state.products.productsStore)
-    const upiqueCategory = [...new Set(productsStore.map((item) => item.category))]
+    const upiqueCategory = [...new Set(productsStore.map((item) => item?.category))]
     const menuBar = useSelector(state => state.admin.menuBar)
     const nevigate = useNavigate()
     const productsCategoryHandler = (item) => {
@@ -22,7 +22,7 @@ const AdminProductsCategory = () => {
                 {/* Responsive update: use 2 columns on phones, 3 on tablets, and adapt desktop columns to the sidebar state. */}
                 <div className={`${menuBar === true ? `grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 m-auto w-full z-10`: `grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4 m-auto w-full z-10`}`}>
                     {upiqueCategory.map((item, index) => {
-                        const findImage = productsStore.find(products => products.category === item)?.image;
+                        const findImage = productsStore.find(products => products?.category === item)?.image;
                         return (
                             <div onClick={() => {
                                 productsCategoryHandler(item)
@@ -33,7 +33,7 @@ const AdminProductsCategory = () => {
                                 </div>
                                 <div className='flex-1 min-w-0 rounded-bl-xl rounded-br-xl flex justify-center items-center bg-[#f0ebeb] px-2'>
                                     {/* Responsive update: reduce category typography on mobile and safely wrap long names. */}
-                                    <h1 className='text-sm sm:text-xl font-medium text-center break-words'>{item.toUpperCase()}</h1>
+                                    <h1 className='text-sm sm:text-xl font-medium text-center break-words'>{item?.toUpperCase()}</h1>
                                 </div>
                             </div>
                         )

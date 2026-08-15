@@ -11,7 +11,7 @@ const AdminSingleProductsCategory = () => {
   const productsCategory = useParams()
   const menuBar = useSelector(state => state.admin.menuBar)
   const deletePopup = useSelector(state => state.admin.deletePopup)
-  const filterProducts = productsStore.filter((item) => item.category === productsCategory.category)
+  const filterProducts = productsStore.filter((item) => item?.category === productsCategory?.category)
   console.log(filterProducts)
   return (
     /* Responsive update: keep the category page inside the viewport with responsive padding. */
@@ -19,10 +19,10 @@ const AdminSingleProductsCategory = () => {
       {deletePopup && <DeletePopups />}
       <div>
         {/* Responsive update: scale the category title on mobile. */}
-        <h1 className='font-serif text-lg sm:text-xl break-words'>{productsCategory.category}: ({filterProducts.length})</h1>
+        <h1 className='font-serif text-lg sm:text-xl break-words'>{productsCategory?.category}: ({filterProducts?.length})</h1>
       </div>
       {
-        productsStore.length === 0 ? (<div className='min-h-[60vh] w-full flex justify-center items-center'>
+        productsStore?.length === 0 ? (<div className='min-h-[60vh] w-full flex justify-center items-center'>
           {/* Responsive update: use a smaller empty-state heading on mobile. */}
           <h1 className='text-xl sm:text-2xl font-bold font-serif text-[#222121]'>NO Products</h1>
         </div>) : null
@@ -31,7 +31,7 @@ const AdminSingleProductsCategory = () => {
       <div className={`${menuBar === true ? `gap-3 sm:gap-4 grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4`: `gap-3 sm:gap-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5`}`}>
         {filterProducts.map((item) => {
           return (
-            <ProductsCard key={item._id} details={item} />
+            <ProductsCard key={item?._id} details={item} />
           )
         })}
       </div>
@@ -72,16 +72,16 @@ const ProductsCard = ({ details }) => {
           </div>
           <div className='bottom-4 relative min-w-0'>
             {/* Responsive update: let the title use the available card width with mobile-friendly typography. */}
-            <h1 className='text-gray font-serif truncate w-full text-sm sm:text-base'>{details.title}</h1>
+            <h1 className='text-gray font-serif truncate w-full text-sm sm:text-base'>{details?.title}</h1>
           </div>
           <div className='min-w-0'>
             {/* Responsive update: remove the fixed description width so narrow cards do not overflow. */}
-            <h1 className='truncate w-full font-serif relative bottom-4 text-xs sm:text-[15px] text-[#252525]'>{details.description}</h1>
+            <h1 className='truncate w-full font-serif relative bottom-4 text-xs sm:text-[15px] text-[#252525]'>{details?.description}</h1>
           </div>
           {/* Responsive update: keep price text compact and readable on mobile cards. */}
           <div className='flex justify-between items-center w-full max-w-[6rem] relative bottom-2 text-base sm:text-xl gap-2 shrink-0'>
-            <div><h1 className='line-through text-[#5a5858] font-extralight'>₹{details.orginalPrice}</h1></div>
-            <div><h1 className='text-[#1a1919]'>₹{details.discountPrice}</h1></div>
+            <div><h1 className='line-through text-[#5a5858] font-extralight'>₹{details?.orginalPrice}</h1></div>
+            <div><h1 className='text-[#1a1919]'>₹{details?.discountPrice}</h1></div>
           </div>
           {/* Responsive update: make the ADD button fluid instead of using a fixed desktop-only width. */}
           <div className='flex justify-center items-center mt-auto pb-2 w-full'>
@@ -99,7 +99,7 @@ export const DeletePopups = () => {
     dispatch(setCloseDeletePopup())
   }
   const deleteProductsHandler = async () => {
-    await dispatch(deleteProducts(deletePopup._id))
+    await dispatch(deleteProducts(deletePopup?._id))
     dispatch(setCloseDeletePopup())
   }
   return (

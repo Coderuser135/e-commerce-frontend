@@ -35,11 +35,11 @@ const AllProductsCategory = () => {
                                 {/* Products List Category Image */}
                                 {/* Responsive update: image area scales with the card and remains contained on mobile. */}
                                 <div className='h-40 sm:h-50 w-full rounded-tl-xl rounded-tr-xl flex justify-center bg-[#cac8c8]'>
-                                    <img key={item.id} src={findImage} className='w-full h-full aspect-square object-contain rounded-2xl' />
+                                    <img src={findImage} className='w-full h-full aspect-square object-contain rounded-2xl' />
                                 </div>
                                 <div className='flex-1 rounded-bl-xl rounded-br-xl flex justify-center items-center bg-[#f0ebeb] px-2'>
                                     {/* Responsive update: use mobile-friendly typography and safe wrapping for category names. */}
-                                    <h1 className='text-sm sm:text-xl font-medium text-center break-words'>{item.toUpperCase()}</h1>
+                                    <h1 className='text-sm sm:text-xl font-medium text-center break-words'>{item?.toUpperCase()}</h1>
                                 </div>
                             </div>
                         )

@@ -9,7 +9,7 @@ const ProductsCategoryPage = () => {
     const params = useParams()
     const category = params.category
     const productsCategory = productsStore.filter((item) => {
-        if (item.category === category) {
+        if (item?.category === category) {
             return item
         }
     })
@@ -23,12 +23,12 @@ const ProductsCategoryPage = () => {
                     <BackButton nevigatePage={'/'} />
                 </div>
                 {/* Responsive update: scale category heading and allow long category names to wrap. */}
-                <h1 className='text-base sm:text-xl font-medium font-serif break-words'>Category: {category} ({productsCategory.length})</h1>
+                <h1 className='text-base sm:text-xl font-medium font-serif break-words'>Category: {category} ({productsCategory?.length})</h1>
                 {/* Responsive update: use 2 columns on phones, 3 on tablets and 5 on desktop. */}
                 <div className='h-full w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-5 justify-items-center'>
                     {productsCategory.map((item) => {
                         return (
-                            <div key={item._id} className='w-full min-w-0 flex justify-center'>
+                            <div key={item?._id} className='w-full min-w-0 flex justify-center'>
                                 <Card details={item} />
                             </div>
                         )

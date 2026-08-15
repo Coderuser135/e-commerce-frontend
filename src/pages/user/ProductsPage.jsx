@@ -78,7 +78,7 @@ const ProductsPage = () => {
               <div className='w-full grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 justify-items-center'>
                 {electronicsCategory.slice(0, 4).map((item) => {
                   return (
-                    <div key={item._id} className='w-full flex justify-center min-w-0'>
+                    <div key={item?._id} className='w-full flex justify-center min-w-0'>
                       <Card details={item} />
                     </div>
                   )
@@ -116,7 +116,7 @@ const ProductsPage = () => {
               <div className='w-full grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 justify-items-center'>
                 {accessoriesCategory.slice(0, 4).map((item) => {
                   return (
-                    <div key={item._id} className='w-full flex justify-center min-w-0'>
+                    <div key={item?._id} className='w-full flex justify-center min-w-0'>
                       <Card details={item} />
                     </div>
                   )
@@ -137,7 +137,7 @@ export const Card = ({ details }) => {
   const productsCardHandler = (details) => {
     // nevigate(`/products/${details._id}`)
     // window.open(targetHref + `/${details._id}`, 'products_viwers', 'noopener,noreferrer');
-    nevigate(`/products/${details._id}`)
+    nevigate(`/products/${details?._id}`)
   }
   const addToCardHandler = () => {
     dispath(setProductCardCount())
@@ -149,7 +149,7 @@ export const Card = ({ details }) => {
         {/* Add BookMark */}
         <div className='w-full h-8 rounded-tl-[10px] rounded-tr-[10px] flex justify-between items-center px-2 shrink-0'>
           <div className='min-w-0'>
-            <h1 className='text-[13px] sm:text-[15px] font-bold font-sans text-[#5f5353] truncate'>{details.category}</h1>
+            <h1 className='text-[13px] sm:text-[15px] font-bold font-sans text-[#5f5353] truncate'>{details?.category}</h1>
           </div>
           <div className='shrink-0'>
             <button className='text-[20px] py-1.25'><FaRegHeart className='text-[#3d3b3b]' /></button>
@@ -159,14 +159,14 @@ export const Card = ({ details }) => {
         <div onClick={() => {
           productsCardHandler(details)
         }} className='h-40 w-full flex justify-center bg-[#eceaea] shrink-0'>
-          <img src={details.image} className='w-full h-full aspect-square object-contain' />
+          <img src={details?.image} className='w-full h-full aspect-square object-contain' />
         </div>
         {/* Products Deatils */}
         <div className='flex-1 rounded-bl-[10px] rounded-br-[10px] flex flex-col gap-1 px-2 min-w-0'>
           {/* Products Rating */}
           <div className='flex justify-between items-center w-16 bg-[#dad6d6] relative bottom-8.5 left-px px-2 rounded-[5px] shadow-2xl gap-[3.5px] shrink-0'>
             <div>
-              <h1 className='font-bold'>{details.rating}</h1>
+              <h1 className='font-bold'>{details?.rating}</h1>
             </div>
             <div>
               <h1><FaStar className='text-[green]' /></h1>
@@ -174,19 +174,19 @@ export const Card = ({ details }) => {
           </div>
           {/* Products Title */}
           <div className='bottom-4 relative min-w-0'>
-            <h1 className='text-gray font-serif truncate w-full'>{details.title}</h1>
+            <h1 className='text-gray font-serif truncate w-full'>{details?.title}</h1>
           </div>
           {/* Products Descraption */}
           <div className='min-w-0'>
-            <h1 className='truncate w-full font-serif relative bottom-4 text-[15px] text-[#252525]'>{details.description}</h1>
+            <h1 className='truncate w-full font-serif relative bottom-4 text-[15px] text-[#252525]'>{details?.description}</h1>
           </div>
           {/* Products Price */}
           <div className='flex justify-between items-center w-full max-w-[5.8rem] relative bottom-2 text-lg sm:text-xl gap-2 shrink-0'>
             <div>
-              <h1 className='line-through text-[#5a5858] font-extralight'>₹{details.orginalPrice}</h1>
+              <h1 className='line-through text-[#5a5858] font-extralight'>₹{details?.orginalPrice}</h1>
             </div>
             <div>
-              <h1 className='text-[#1a1919]'>₹{details.discountPrice}</h1>
+              <h1 className='text-[#1a1919]'>₹{details?.discountPrice}</h1>
             </div>
           </div>
           {/* Responsive update: ADD button fills the available card width instead of using a fixed horizontal padding. */}
@@ -221,7 +221,7 @@ const ProductsCategory = () => {
       </div>
       <div className='flex-1 rounded-bl-xl rounded-br-xl flex justify-center items-center bg-[#f0ebeb] px-2'>
         {/* Responsive update: category label scales down and wraps safely on narrow screens. */}
-        <h1 className='text-sm sm:text-xl font-medium text-center break-words'>{item.toUpperCase()}</h1>
+        <h1 className='text-sm sm:text-xl font-medium text-center break-words'>{item?.toUpperCase()}</h1>
       </div>
     </div >
         )
@@ -261,7 +261,7 @@ const ProductSlider = ({ products }) => {
         className="flex gap-3 sm:gap-4 overflow-x-auto scroll-smooth py-2 px-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
       >
         {products.slice(0, 20).map((product) => (
-          <div key={product._id} className="shrink-0 w-[calc(50vw-1.25rem)] max-w-[15rem] min-w-[10.5rem]
+          <div key={product?._id} className="shrink-0 w-[calc(50vw-1.25rem)] max-w-[15rem] min-w-[10.5rem]
            sm:w-[15rem]">
             <Card details={product} />
           </div>
