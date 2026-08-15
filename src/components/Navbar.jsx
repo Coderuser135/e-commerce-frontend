@@ -24,54 +24,57 @@ const Navbar = () => {
     }
     return (
         <>
-            <div className="w-full h-20 bg-[#978F66] flex justify-between p-2 px-6 items-center sticky top-0 left-0 right-0 z-20">
-                {/* Home Bar */}
-                <Link to={'/'}>
-                    <div className="flex  items-center p-2 gap-2">
-                        <h1><FiHome className="text-2xl text-[#f5725b] font-bold" /></h1>
-                        <h1 className="text-2xl font-bold text-[tomato]">NPM <span className="text-[#E4D6A9] font-serif">STORE</span></h1>
+            {/* Responsive update: mobile uses two rows (brand/actions + search), while desktop keeps the navbar in one row. */}
+            <div className="w-full min-h-20 bg-[#978F66] flex flex-col lg:flex-row lg:justify-between lg:items-center gap-2 p-2 px-3 sm:px-5 lg:px-6 sticky top-0 left-0 right-0 z-20">
+                {/* Responsive update: keep the store logo on the left and cart/notification/profile controls on the right. */}
+                <div className="w-full lg:w-auto flex justify-between items-center gap-3 min-w-0">
+                    <Link to={'/'} className="shrink-0">
+                        <div className="flex items-center p-1 sm:p-2 gap-1.5 sm:gap-2">
+                            <h1><FiHome className="text-xl sm:text-2xl text-[#f5725b] font-bold" /></h1>
+                            <h1 className="text-xl sm:text-2xl font-bold text-[tomato]">NPM <span className="text-[#E4D6A9] font-serif">STORE</span></h1>
+                        </div>
+                    </Link>
 
+                    {/* Responsive update: action controls stay grouped on the opposite side of the brand on mobile. */}
+                    <div className="flex items-center gap-2 sm:gap-3 lg:gap-4 text-xl sm:text-2xl text-[#E4D6A9] shrink-0">
+                        <div className="bg-[#ff826c] h-9 w-9 sm:h-10 sm:w-10 rounded-[5px] flex justify-center items-center flex-col hover:bg-[tomato] active:scale-95 transition-all">
+                            <button aria-label="Shopping cart"><FaShoppingCart /></button>
+                        </div>
+                        <div className='flex items-center gap-2 sm:gap-3'>
+                            <div>
+                                <h1 className='text-[22px] sm:text-[25px]'><IoIosNotifications /></h1>
+                            </div>
+                            <div className='flex items-center gap-1.5 sm:gap-2'>
+                                <div onClick={setShowProfileHandler} className="h-8 w-8 sm:h-7.5 sm:w-7.5 rounded-full flex justify-around items-center bg-[#c5c5c5] shadow-2xl shrink-0">
+                                    <img src={user.userImage !== null ? user.userImage : userImage} className="h-full w-full rounded-full object-cover"/>
+                                </div>
+                                {/* Responsive update: hide the user name on narrow screens so the controls never overflow. */}
+                                <h1 className='hidden sm:block text-[16px] sm:text-[18px] max-w-24 truncate'>{user?.role !== "admin" ? user.fullName : "Admin"}</h1>
+                            </div>
+                            <div>
+                                <h1 onClick={setShowCardHandler} className="p-1 cursor-pointer"><TfiAngleDown className={`text-[13px] sm:text-[15px] ${showCard === true ? "rotate-180 transition-colors duration-1000 ease-in" : ""}`} /></h1>
+                            </div>
+                        </div>
                     </div>
-                </Link>
+                </div>
 
-                {/* Search Bar */}
-                <div className="flex items-center gap-2 bg-[#E4D6A9] py-2 w-[25rem] rounded-[15px] pl-4">
-                    <div>
+                {/* Responsive update: search moves below the first row on mobile and becomes fluid instead of using fixed widths. */}
+                <div className="w-full lg:w-[25rem] flex items-center gap-2 bg-[#E4D6A9] py-2 px-3 rounded-[15px] min-w-0 order-last lg:order-none">
+                    <div className="shrink-0">
                         <FiSearch className="text-xl" />
                     </div>
-                    <div>
-                        <input type="text" placeholder="Search Products & Category Items...." className="w-[20rem] h-[1.8rem] outline-none text-[gray] font-serif font-semibold" />
+                    <div className="min-w-0 flex-1">
+                        <input type="text" placeholder="Search Products & Category Items...." className="w-full h-7 outline-none bg-transparent text-[gray] font-serif font-semibold text-sm sm:text-base" />
                     </div>
-
                 </div>
-                {/* Add to Card Bar & Other featutes*/}
-                <div className="p-2 w-[20rem] flex justify-between items-center text-2xl text-[#E4D6A9]">
-                    <div className="bg-[#ff826c] h-10 w-10 rounded-[5px] flex justify-center items-center flex-col hover:bg-[tomato] active:scale-120 transition-all ease-in 5s">
-                        <button><FaShoppingCart /></button>
-                    </div>
-                    {/* user icon */}
-                    <div className='flex justify-between items-center gap-4'>
-                        <div>
-                            <h1 className='text-[25px]'><IoIosNotifications /></h1>
-                        </div>
-                        <div className='flex justify-between items-center gap-2'>
-                            <div onClick={setShowProfileHandler} className="h-7.5 w-7.5 rounded-full flex justify-around items-center bg-[#c5c5c5] shadow-2xl">
-                                <img src={user.userImage !== null ? user.userImage : userImage} className="h-7.5 w-7.5 rounded-full"/>
-                            </div>
-                            <h1 className='text-[18px]'>{user?.role !== "admin" ? user.fullName : "Admin"}</h1>
-                        </div>
-                        <div>
-                            <h1 onClick={setShowCardHandler} ><TfiAngleDown className={`text-[15px] ${showCard === true ? "rotate-180 transition-colors duration-1000 ease-in" : ""}`} /></h1>
-                        </div>
-                    </div>
-                    {/* card info */}
-                    <div className={`absolute top-28 right-5 opacity-0 ${showCard === true ? "-translate-y-10 opacity-100  transition-all duration-500 ease-in-out" : "translate-y-10 opacity-0 scale-75  transition-all duration-500 ease-in-out"}`}>
-                        <InfoCard role={user.role} email={user.email} setShowCard={setShowCard} />
-                    </div>
-                    {/* user profile info card */}
-                    <div className={`fixed top-0 right-0 opacity-50 ${showProfile === true ? "translate-x-0 opacity-100  transition-all duration-500 ease-in-out" : "translate-x-100 opacity-0 transition-all duration-500 ease-in-out"}`}>
-                        <ProfileInfoCard setShowProfileHandler={setShowProfileHandler} user={user} />
-                    </div>
+
+                {/* Responsive update: dropdown is positioned below the complete mobile navbar. */}
+                <div className={`absolute top-[7.5rem] sm:top-24 lg:top-20 right-3 sm:right-5 opacity-0 ${showCard === true ? "-translate-y-2 opacity-100 transition-all duration-500 ease-in-out" : "translate-y-2 opacity-0 scale-75 transition-all duration-500 ease-in-out"}`}>
+                    <InfoCard role={user.role} email={user.email} setShowCard={setShowCard} />
+                </div>
+                {/* user profile info card */}
+                <div className={`fixed top-0 right-0 opacity-50 ${showProfile === true ? "translate-x-0 opacity-100 transition-all duration-500 ease-in-out" : "translate-x-100 opacity-0 transition-all duration-500 ease-in-out"}`}>
+                    <ProfileInfoCard setShowProfileHandler={setShowProfileHandler} user={user} />
                 </div>
             </div>
         </>
