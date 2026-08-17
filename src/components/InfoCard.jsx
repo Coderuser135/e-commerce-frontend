@@ -12,6 +12,10 @@ const InfoCard = ({ role, setShowCard }) => {
         nevigate("/my-profile")
         setShowCard(false)
     }
+    const adminPannelHandler = () => {
+        nevigate("/adminPannel")
+        setShowCard(false)
+    }
     return (
         <>
             <div className="h-68 w-60 border-2 rounded-2xl border-[#cfcfce] bg-[#F5F5DC] flex flex-col p-2 text-[#494848] pl-4 gap-2 items-center justify-center">
@@ -26,7 +30,7 @@ const InfoCard = ({ role, setShowCard }) => {
                 </div>
                 {/* Admin */}
                 {role === "admin" &&
-                    <div className="h-10 w-full flex items-center gap-2 p-1 hover:bg-[#e2f1f0] hover:border active:scale-95 transition-all duration-75 hover:scale-105 hover:shadow-xl active:select-none active:shadow-[#d3cfcf] ease-in-out rounded-[10px]">
+                    <div onClick={adminPannelHandler} className="h-10 w-full flex items-center gap-2 p-1 hover:bg-[#e2f1f0] hover:border active:scale-95 transition-all duration-75 hover:scale-105 hover:shadow-xl active:select-none active:shadow-[#d3cfcf] ease-in-out rounded-[10px]">
                         <div>
                             <h1 className="text-[20px]"><RiAdminLine /></h1>
                         </div>

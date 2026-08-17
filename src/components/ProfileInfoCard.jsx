@@ -78,10 +78,10 @@ const ProfileInfoCard = ({ setShowProfileHandler, user }) => {
             <div className="h-screen w-80 bg-[#1B515E] px-4 py-2 flex flex-col gap-2">
                 <div className="h-12 flex w-full justify-between items-center">
                     <div>
-                        <h1>Profile</h1>
+                        <h1 className="text-white">Profile</h1>
                     </div>
                     <div onClick={setShowProfileHandler} className="px-4 rounded-md hover:scale-105 hover:bg-black hover:text-red-500 active:scale-95 active:bg-black active:text-red-500 active:select-none">
-                        <h1>X</h1>
+                        <h1 className="text-white hover:text-red-500">X</h1>
                     </div>
                 </div>
                 {/* update profile info fields */}
@@ -100,7 +100,7 @@ const ProfileInfoCard = ({ setShowProfileHandler, user }) => {
                         </div>
                     </div>
                     {/* update name */}
-                    <div className="h-full px-2 mt-2">
+                    <div className="h-full px-2 mt-2 text-white">
                         <h1 className="text-[18px] text-white mb-1">Update Profile</h1>
                         <input
                             type="text"
@@ -126,11 +126,11 @@ const ProfileInfoCard = ({ setShowProfileHandler, user }) => {
                     </div>
                 </div>
                 {/* update password */}
-                <div className="h-72 w-full flex flex-col gap-2 px-2 mt-4">
+                <div className="h-72 w-full flex flex-col gap-2 px-2 mt-4 text-white">
                     <div>
                         <h1 className="text-[18px] text-white">Update Password</h1>
                     </div>
-                    <div className="flex flex-col gap-2">
+                    <div className="flex flex-col gap-2 text-white">
                         <input
                             type={inputPassword.showPassword === true ? "text" : "password"}
                             value={inputPassword.currentPassword}

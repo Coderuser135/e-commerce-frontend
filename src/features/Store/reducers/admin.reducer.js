@@ -12,10 +12,13 @@ export const createProducts = createAsyncThunk(
           Authorization: `Bearer ${bearerToken}`,
         },
       });
+
       if (createProductsItem.status === 201) {
+        dispatch(getProducts({
+          bearerToken
+        }));
         toast.success("This Products are created");
       }
-      dispatch(getProducts());
     } catch (error) {
       console.log(error.message);
       return rejectWithValue(error.message);
@@ -25,7 +28,7 @@ export const createProducts = createAsyncThunk(
 
 export const updateProducts = createAsyncThunk(
   "admin/updateProducts",
-  async ({ updateData, id, bearerToken }, { rejectWithValue }) => {
+  async ({ updateData, id, bearerToken }, { rejectWithValue, dispatch }) => {
     try {
       const updateProductsItem = await api.put(
         `/api/products/${id}`,
@@ -35,6 +38,9 @@ export const updateProducts = createAsyncThunk(
         },
       );
       if (updateProductsItem.status === 200) {
+        await dispatch(getProducts({
+          bearerToken
+        }));
         toast.success("This Products is updated");
       }
     } catch (error) {

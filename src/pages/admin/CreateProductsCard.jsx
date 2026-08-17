@@ -1,42 +1,117 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import productsImage from '../../assets/userImage.jpg'
 import { setEditDataStore } from '../../features/Store/slice/admin.slice.js'
 import { createProducts, updateProducts } from '../../features/Store/reducers/admin.reducer.js'
 import ButtonLoading from "../../components/ButtonLoading.jsx"
 import { toast } from 'react-toastify'
+import productsImage from "../../assets/productsImage.jpg"
 
 const CreateProductsCard = () => {
   const dispatch = useDispatch()
   const user = useSelector(state => state.auth.user)
   const loading = useSelector(state => state.admin.loading)
   const eidtData = useSelector(state => state.admin.editDataStore)
-  const [inputData, setInputData] = useState({ image: productsImage, category: '', rating: '', title: '', description: '', orginalPrice: '', discountPrice: '' })
+  const [inputData, setInputData] = useState({
+    image: productsImage,
+    productsImage,
+    category: '',
+    rating: '',
+    title: '',
+    description: '',
+    orginalPrice: '',
+    discountPrice: ''
+  })
   const inputDataHandler = (e) => {
     const { name, value, type, files } = e.target
     setInputData({ ...inputData, [name]: type === "file" ? files[0] : value })
   }
   useEffect(() => {
     if (!eidtData) return
-    setInputData({ image: eidtData.image, category: eidtData.category, rating: eidtData.rating, title: eidtData.rating, description: eidtData.description, orginalPrice: eidtData.orginalPrice, discountPrice: eidtData.discountPrice })
+    setInputData({
+      image: eidtData.image,
+      category: eidtData.category,
+      rating: eidtData.rating,
+      title: eidtData.rating,
+      description: eidtData.description,
+      orginalPrice: eidtData.orginalPrice,
+      discountPrice: eidtData.discountPrice
+    })
   }, [eidtData])
   const createProductsHandler = async () => {
-    if (inputData.image === "" || inputData.category === "" || inputData.rating === "" || inputData.title === "" || inputData.description === "" || inputData.orginalPrice === "" || inputData.discountPrice === "") return toast.error("All Products fields are required")
+    if (inputData.image === "" ||
+      inputData.category === "" ||
+      inputData.rating === "" ||
+      inputData.title === "" ||
+      inputData.description === "" ||
+      inputData.orginalPrice === "" ||
+      inputData.discountPrice === "")
+      return toast.error("All Products fields are required")
+
     if (inputData.rating > 5) return toast.error("Products rating more then 5")
     const formData = new FormData()
-    const inputFromData = { category: inputData.category, rating: inputData.rating, title: inputData.title, description: inputData.description, orginalPrice: inputData.orginalPrice, discountPrice: inputData.discountPrice }
-    formData.append("inputData", JSON.stringify(inputFromData)); formData.append("image", inputData.image)
-    await dispatch(createProducts({ formData, bearerToken: user.accessToken }))
-    setInputData({ image: productsImage, category: '', rating: '', title: '', description: '', orginalPrice: '', discountPrice: '' })
+    const inputFromData = {
+      category: inputData.category,
+      rating: inputData.rating,
+      title: inputData.title,
+      description: inputData.description,
+      orginalPrice: inputData.orginalPrice,
+      discountPrice: inputData.discountPrice
+    }
+    formData.append("inputData", JSON.stringify(inputFromData));
+    formData.append("image", inputData.image)
+    await dispatch(createProducts({
+      formData,
+      bearerToken: user.accessToken
+    }))
+    setInputData({
+      image: productsImage,
+      category: '',
+      rating: '',
+      title: '',
+      description: '',
+      orginalPrice: '',
+      discountPrice: ''
+    })
   }
   const updateProductsDataHandler = async () => {
     const formData = new FormData()
-    const inputFromData = { category: inputData.category, rating: inputData.rating, title: inputData.title, description: inputData.description, orginalPrice: inputData.orginalPrice, discountPrice: inputData.discountPrice }
-    formData.append("image", inputData.image); formData.append("inputData", JSON.stringify(inputFromData))
-    await dispatch(updateProducts({ updateData: formData, id: eidtData._id, bearerToken: user.accessToken }))
-    setInputData({ image: productsImage, category: '', rating: '', title: '', description: '', orginalPrice: '', discountPrice: '' }); dispatch(setEditDataStore(null))
+    const inputFromData = {
+      category: inputData.category,
+      rating: inputData.rating,
+      title: inputData.title,
+      description: inputData.description,
+      orginalPrice: inputData.orginalPrice,
+      discountPrice: inputData.discountPrice
+    }
+    formData.append("image", inputData.image);
+    formData.append("inputData", JSON.stringify(inputFromData))
+    await dispatch(updateProducts({
+      updateData: formData,
+      id: eidtData._id,
+      bearerToken: user.accessToken
+    }))
+    setInputData({
+      image: productsImage,
+      category: '',
+      rating: '',
+      title: '',
+      description: '',
+      orginalPrice: '',
+      discountPrice: ''
+    });
+    dispatch(setEditDataStore(null))
   }
-  const cancelProductsHandler = () => setInputData({ image: '', category: '', rating: '', title: '', description: '', orginalPrice: '', discountPrice: '' })
+  const cancelProductsHandler = () => {
+    setInputData({
+      image: productsImage,
+      category: '',
+      rating: '',
+      title: '',
+      description: '',
+      orginalPrice: '',
+      discountPrice: ''
+    })
+  }
   const imageFolderRef = useRef(null)
   const openImageFolderHandler = () => imageFolderRef.current?.click()
   const { image, category, rating, title, description, orginalPrice, discountPrice } = inputData
@@ -48,7 +123,7 @@ const CreateProductsCard = () => {
         <div className='w-full flex justify-center'>
           <div className='w-full max-w-[37.5rem] bg-[#e9e4e4] shadow-2xl rounded-[20px] sm:rounded-[25px] flex flex-col px-4 sm:px-6 py-4 sm:py-5 gap-2'>
             {/* Responsive update: keep the product image centered and touch-friendly on small screens. */}
-            <div className='h-24 w-32 sm:h-25 sm:w-35 rounded-xl flex justify-center items-center relative bg-[#afafaf] flex-col mx-auto shrink-0'>
+            <div className='h-24 w-32 sm:h-25 hover:scale-95 transition-all duration-150 ease-in-out sm:w-35 rounded-xl flex justify-center items-center relative bg-[#afafaf] flex-col mx-auto shrink-0'>
               <div className='h-full w-full rounded-xl hover:scale-95 flex justify-center items-center'>
                 <img src={image instanceof File ? URL.createObjectURL(image) : image} alt='products image' className='h-full w-full rounded-xl object-cover' />
               </div>
