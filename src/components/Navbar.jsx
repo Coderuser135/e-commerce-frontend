@@ -24,10 +24,10 @@ const Navbar = () => {
     }
     return (
         <>
-            {/* Responsive fix: use a 2-column mobile layout and a 3-part desktop layout. */}
-            <div className="w-full min-h-20 bg-[#978F66] grid grid-cols-2 lg:grid-cols-[1fr_auto_1fr] items-center gap-2 p-2 px-3 sm:px-5 lg:px-6 sticky top-0 left-0 right-0 z-20">
-                {/* Responsive fix: logo stays on the left on desktop and occupies the first mobile column. */}
-                <div className="justify-self-start min-w-0">
+            {/* Responsive fix: mobile uses two rows; desktop explicitly places logo, search and actions in columns 1, 2 and 3. */}
+            <div className="w-full min-h-20 bg-[#978F66] grid grid-cols-2 lg:grid-cols-[1fr_auto_1fr] lg:grid-rows-1 items-center gap-2 p-2 px-3 sm:px-5 lg:px-6 sticky top-0 left-0 right-0 z-20">
+                {/* Responsive fix: logo is explicitly placed in the left column on desktop. */}
+                <div className="justify-self-start min-w-0 lg:col-start-1 lg:row-start-1">
                     <Link to={'/'} className="shrink-0">
                         <div className="flex items-center p-1 sm:p-2 gap-1.5 sm:gap-2">
                             <h1><FiHome className="text-xl sm:text-2xl text-[#f5725b] font-bold" /></h1>
@@ -36,8 +36,18 @@ const Navbar = () => {
                     </Link>
                 </div>
 
-                {/* Responsive fix: action controls stay on the right on desktop and in the second mobile column. */}
-                <div className="justify-self-end flex items-center gap-2 sm:gap-3 lg:gap-4 text-xl sm:text-2xl text-[#E4D6A9] shrink-0">
+                {/* Responsive fix: search spans both mobile columns on row 2, but is explicitly centered in desktop column 2. */}
+                <div className="col-span-2 row-start-2 lg:col-span-1 lg:row-start-1 lg:col-start-2 lg:justify-self-center w-full lg:w-[25rem] flex items-center gap-2 bg-[#E4D6A9] py-2 px-3 rounded-[15px] min-w-0">
+                    <div className="shrink-0">
+                        <FiSearch className="text-xl" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                        <input type="text" placeholder="Search Products & Category Items...." className="w-full h-7 outline-none bg-transparent text-[gray] font-serif font-semibold text-sm sm:text-base" />
+                    </div>
+                </div>
+
+                {/* Responsive fix: action controls are explicitly placed in the right column on desktop and remain right-aligned in mobile column 2. */}
+                <div className="justify-self-end flex items-center gap-2 sm:gap-3 lg:gap-4 text-xl sm:text-2xl text-[#E4D6A9] shrink-0 lg:col-start-3 lg:row-start-1">
                     <div className="bg-[#ff826c] h-9 w-9 sm:h-10 sm:w-10 rounded-[5px] flex justify-center items-center flex-col hover:bg-[tomato] active:scale-95 transition-all">
                         <button aria-label="Shopping cart"><FaShoppingCart /></button>
                     </div>
@@ -49,22 +59,12 @@ const Navbar = () => {
                             <div onClick={setShowProfileHandler} className="h-8 w-8 sm:h-7.5 sm:w-7.5 rounded-full flex justify-around items-center bg-[#c5c5c5] shadow-2xl shrink-0">
                                 <img src={user.userImage !== null ? user.userImage : userImage} className="h-full w-full rounded-full object-cover"/>
                             </div>
-                            {/* Responsive fix: hide the user name on narrow screens so actions fit safely. */}
+                            {/* Responsive fix: hide the user name on narrow screens so the action controls fit. */}
                             <h1 className='hidden sm:block text-[16px] sm:text-[18px] max-w-24 truncate'>{user?.role !== "admin" ? user.fullName : "Admin"}</h1>
                         </div>
                         <div>
                             <h1 onClick={setShowCardHandler} className="p-1 cursor-pointer"><TfiAngleDown className={`text-[13px] sm:text-[15px] ${showCard === true ? "rotate-180 transition-colors duration-1000 ease-in" : ""}`} /></h1>
                         </div>
-                    </div>
-                </div>
-
-                {/* Responsive fix: search is full-width on mobile below the first row, but stays centered between logo and actions on desktop. */}
-                <div className="col-span-2 lg:col-span-1 lg:justify-self-center w-full lg:w-[25rem] flex items-center gap-2 bg-[#E4D6A9] py-2 px-3 rounded-[15px] min-w-0">
-                    <div className="shrink-0">
-                        <FiSearch className="text-xl" />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                        <input type="text" placeholder="Search Products & Category Items...." className="w-full h-7 outline-none bg-transparent text-[gray] font-serif font-semibold text-sm sm:text-base" />
                     </div>
                 </div>
 
