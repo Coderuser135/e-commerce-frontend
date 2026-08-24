@@ -5,9 +5,11 @@ import { CgProfile } from "react-icons/cg";
 import { TfiAngleDown } from "react-icons/tfi";
 import { useDispatch, useSelector } from 'react-redux';
 import { setMenuBar } from '../features/Store/slice/admin.slice.js';
+import userImage from "../assets/userImage.jpg"
 
 const AdminNavbar = () => {
   const menuBar = useSelector(state => state.admin.menuBar)
+  const user = useSelector(state => state.auth.user)
   const dispatch = useDispatch()
   const menubarHandler = () => {
     dispatch(setMenuBar())
@@ -22,15 +24,8 @@ const AdminNavbar = () => {
             <button onClick={menubarHandler} aria-label='Toggle admin menu' className='p-1 sm:p-2 rounded-md active:scale-95 shrink-0'><MdMenu className='text-xl sm:text-2xl' /></button>
             <h1 className='truncate'>Dashboard</h1>
           </div>
-          {/* Responsive update: reduce admin action spacing and icon sizes to avoid mobile overflow. */}
-          <div className='flex items-center gap-2 sm:gap-4 shrink-0'>
-            <IoIosNotifications className='text-xl sm:text-[25px]' />
-            <div className='flex items-center gap-1.5 sm:gap-2'>
-              <CgProfile className='text-xl sm:text-[25px]' />
-              {/* Responsive update: hide the admin label on narrow screens so controls stay inside the viewport. */}
-              <h1 className='hidden sm:block text-base sm:text-[18px]'>Admin</h1>
-            </div>
-            <button className='p-1 sm:p-2' aria-label='Open admin menu'><TfiAngleDown className='text-xs sm:text-base' /></button>
+          <div className='h-10 w-10 rounded-full hover:scale-105'>
+            <img src={user?.userImage !== null ? user?.userImage : userImage} className='h-10 w-10 rounded-full border-2 border-gray-400'/>
           </div>
         </div>
       </div>

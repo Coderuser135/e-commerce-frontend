@@ -21,12 +21,13 @@ import AllProductsCategory from "../pages/user/AllProductsCategory";
 import AllProductsPage from "../pages/user/AllProductsPage";
 import ProfilePage from "../pages/user/ProfilePage";
 import AdminLayout from "../layouts/AdminLayout";
-import AdminPannel from "../pages/admin/AdminPannel";
 import CreateProductsCard from "../pages/admin/CreateProductsCard";
 import AdminProductsPage from "../pages/admin/AdminProductsPage";
 import AdminProductsCategory from "../pages/admin/AdminProductsCategory";
 import AdminSingleProductsCategory from "../pages/admin/AdminSingleProductsCategory";
 import EditPopup from "../components/EditPopup";
+import AddToCardPage from "../pages/user/AddToCardPage";
+import CheckOut from "../pages/user/CheckOut";
 
 const router = createBrowserRouter([
     {
@@ -102,6 +103,14 @@ const router = createBrowserRouter([
                             {
                                 path: "/my-profile",
                                 element: <ProfilePage />
+                            },
+                            {
+                                path: "/addToCard",
+                                element: <AddToCardPage />
+                            },
+                            {
+                                path: "/checkout",
+                                element: <CheckOut />
                             }
                         ]
                     }

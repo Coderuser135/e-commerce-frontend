@@ -5,10 +5,9 @@ import BackButton from '../../components/BackButton'
 
 const ProfilePage = () => {
   const user = useSelector(state => state.auth.user)
-  console.log(user)
   return (
     /* Responsive update: keep the profile page centered with safe mobile padding and prevent horizontal overflow. */
-    <div className='min-h-screen w-full flex flex-col relative justify-center items-center bg-[#F7EAE0] px-3 py-8 overflow-x-hidden'>
+    <div className='min-h-screen w-full flex flex-col relative items-center bg-[#F7EAE0] px-3 py-8 overflow-x-hidden'>
       {/* Responsive update: position the back button safely within the mobile viewport. */}
       <div className='absolute top-3 left-3 sm:top-5 sm:left-5'>
         <div>

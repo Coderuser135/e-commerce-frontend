@@ -12,7 +12,6 @@ const ProfileInfoCard = ({ setShowProfileHandler, user }) => {
     const loading = useSelector(state => state.user.loading)
     const updatePasswordStatus = useSelector(state => state.user.status)
     const updatePasswordLoading = useSelector(state => state.user.updatePasswordLoading)
-    console.log(loading)
     const dispatch = useDispatch()
     const [fileData, setFileData] = useState(null)
     const [inputPassword, setInputPassword] = useState({

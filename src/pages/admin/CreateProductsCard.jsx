@@ -127,17 +127,81 @@ const CreateProductsCard = () => {
               <div className='h-full w-full rounded-xl hover:scale-95 flex justify-center items-center'>
                 <img src={image instanceof File ? URL.createObjectURL(image) : image} alt='products image' className='h-full w-full rounded-xl object-cover' />
               </div>
-              <input type='file' name='image' onChange={inputDataHandler} ref={imageFolderRef} className='hidden' />
+              <input
+                type='file'
+                name='image'
+                onChange={inputDataHandler}
+                ref={imageFolderRef}
+                className='hidden' />
               <div onClick={openImageFolderHandler} className='h-full w-full flex justify-center items-center bg-black absolute rounded-xl opacity-0 hover:opacity-60 text-xl text-white'><h1 className='text-4xl'>+</h1></div>
             </div>
             {/* Responsive update: stack form fields on mobile and use two columns from tablet upward. */}
             <div className='w-full grid grid-cols-1 sm:grid-cols-2 gap-3 font-serif p-1 sm:p-2'>
-              <label className='flex flex-col text-sm sm:text-base gap-1'>Products Title<input type='text' value={title} name='title' placeholder='Products Title' onChange={inputDataHandler} className='w-full min-w-0 h-10 px-3 border border-solid border-[gray] rounded-sm text-sm sm:text-base' /></label>
-              <label className='flex flex-col text-sm sm:text-base gap-1'>Products Description<input type='text' value={description} name='description' onChange={inputDataHandler} placeholder='Products Description' className='w-full min-w-0 h-10 px-3 border border-solid border-[gray] rounded-sm text-sm sm:text-base' /></label>
-              <label className='flex flex-col text-sm sm:text-base gap-1'>Orginal Price<input type='number' value={orginalPrice} name='orginalPrice' onChange={inputDataHandler} placeholder='Orginal Price' className='w-full min-w-0 h-10 px-3 border border-solid border-[gray] rounded-sm text-sm sm:text-base' /></label>
-              <label className='flex flex-col text-sm sm:text-base gap-1'>Discount Price<input type='number' value={discountPrice} name='discountPrice' onChange={inputDataHandler} placeholder='Discount Price' className='w-full min-w-0 h-10 px-3 border border-solid border-[gray] rounded-sm text-sm sm:text-base' /></label>
-              <label className='flex flex-col text-sm sm:text-base gap-1'>Products Rating<input type='number' value={rating} name='rating' onChange={inputDataHandler} placeholder='Products Rating' className='w-full min-w-0 h-10 px-3 border border-solid border-[gray] rounded-sm text-sm sm:text-base' /></label>
-              <label className='flex flex-col text-sm sm:text-base gap-1'>Products Category<select name="category" onChange={inputDataHandler} value={category} className='w-full min-w-0 h-10 px-3 border border-solid border-[#aaa9a9] rounded-[5px] shadow-2xl outline-none bg-white text-sm sm:text-base'><option value=''>---Option----</option><option value='grocery'>Grocery</option><option value='gourmet Foods'>Gourmet Foods</option><option value='sports'>Sports</option><option value='fashion'>Fashion</option><option value='home'>Home</option><option value='beauty'>Beauty</option><option value='electronics '>Electronics</option></select></label>
+              <label className='flex flex-col text-sm sm:text-base gap-1'>
+                Products Title
+                <input
+                  type='text'
+                  value={title}
+                  name='title'
+                  placeholder='Products Title'
+                  onChange={inputDataHandler} className='w-full min-w-0 h-10 px-3 border border-solid border-[gray] rounded-sm text-sm sm:text-base' />
+              </label>
+              <label className='flex flex-col text-sm sm:text-base gap-1'>
+                Products Description
+                <input
+                  type='text'
+                  value={description}
+                  name='description'
+                  onChange={inputDataHandler}
+                  placeholder='Products Description'
+                  className='w-full min-w-0 h-10 px-3 border border-solid border-[gray] rounded-sm text-sm sm:text-base' />
+              </label>
+              <label className='flex flex-col text-sm sm:text-base gap-1'>
+                Orginal Price
+                <input
+                  type='number'
+                  value={orginalPrice}
+                  name='orginalPrice'
+                  onChange={inputDataHandler}
+                  placeholder='Orginal Price'
+                  className='w-full min-w-0 h-10 px-3 border border-solid border-[gray] rounded-sm text-sm sm:text-base' />
+              </label>
+              <label className='flex flex-col text-sm sm:text-base gap-1'>
+                Discount Price
+                <input
+                  type='number'
+                  value={discountPrice}
+                  name='discountPrice'
+                  onChange={inputDataHandler}
+                  placeholder='Discount Price'
+                  className='w-full min-w-0 h-10 px-3 border border-solid border-[gray] rounded-sm text-sm sm:text-base' />
+              </label>
+              <label className='flex flex-col text-sm sm:text-base gap-1'>
+                Products Rating
+                <input
+                  type='number'
+                  value={rating}
+                  name='rating'
+                  onChange={inputDataHandler}
+                  placeholder='Products Rating'
+                  className='w-full min-w-0 h-10 px-3 border border-solid border-[gray] rounded-sm text-sm sm:text-base' />
+              </label>
+              <label className='flex flex-col text-sm sm:text-base gap-1'>
+                Products Category
+                <select
+                  name="category"
+                  onChange={inputDataHandler}
+                  value={category}
+                  className='w-full min-w-0 h-10 px-3 border border-solid border-[#aaa9a9] rounded-[5px] shadow-2xl outline-none bg-white text-sm sm:text-base'>
+                  <option value=''>---Option----</option><option value='grocery'>Grocery</option>
+                  <option value='gourmet Foods'>Gourmet Foods</option>
+                  <option value='sports'>Sports</option>
+                  <option value='fashion'>Fashion</option>
+                  <option value='home'>Home</option>
+                  <option value='beauty'>Beauty</option>
+                  <option value='electronics '>Electronics</option>
+                </select>
+              </label>
             </div>
           </div>
         </div>

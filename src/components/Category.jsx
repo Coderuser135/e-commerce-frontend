@@ -6,7 +6,6 @@ import { FaBorderAll } from "react-icons/fa";
 const Category = () => {
     const productsDetails = useSelector(stete => stete.products.productsStore)
     const singleProductsCategory = [...new Set(productsDetails.map(item => item.category))]
-    console.log(singleProductsCategory)
     const nevigete = useNavigate()
     const categoryHandler = (item) => {
         nevigete(`/products-category/${item}`)

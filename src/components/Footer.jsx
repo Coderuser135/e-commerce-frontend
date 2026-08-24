@@ -8,7 +8,7 @@ const Footer = () => {
     return(
         <>
         {/* Responsive update: footer content changes from a single wide row to a responsive grid. */}
-        <div className='w-full flex flex-col bg-[#978F66] text-[#E4D6A9] mt-5'>
+        <div className='w-full flex flex-col bg-[#978F66] text-[#E4D6A9]'>
             <div className='w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 px-5 sm:px-8 lg:px-20 pb-10 pt-5'>
                 {/* Responsive update: prevent fixed text width from causing horizontal overflow. */}
                 <div className='flex flex-col gap-1 min-w-0'>

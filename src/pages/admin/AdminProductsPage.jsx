@@ -114,11 +114,16 @@ const ProductsCard = ({ details }) => {
 export const DeletePopups = () => {
   const dispatch = useDispatch()
   const deletePopup = useSelector(state => state.admin.deletePopup)
+  const user = useSelector(state => state.auth.user)
   const cancalDeletePopupHandler = () => {
     dispatch(setCloseDeletePopup())
   }
   const deleteProductsHandler = async () => {
-    await dispatch(deleteProducts(deletePopup?._id))
+    console.log(deletePopup._id)
+    await dispatch(deleteProducts({
+      productsId: deletePopup._id,
+      bearerToken: user?.accessToken
+    }))
     dispatch(setCloseDeletePopup())
 
   }

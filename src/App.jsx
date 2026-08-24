@@ -5,6 +5,7 @@ import Footer from './components/Footer'
 import { getProducts } from './features/Store/reducers/products.reducer.js'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
+import { getAddToCard } from './features/Store/reducers/admin.reducer.js'
 
 
 function App() {
@@ -15,6 +16,12 @@ function App() {
       const productsData = await dispatch(getProducts({bearerToken}))
     }
     productsItem()
+  }, [dispatch])
+  useEffect(() => {
+    const addToCard = async () => {
+      const productsData = await dispatch(getAddToCard({bearerToken}))
+    }
+    addToCard()
   }, [dispatch])
   return (
     <>

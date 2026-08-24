@@ -7,6 +7,7 @@ import { FaChevronRight } from "react-icons/fa6";
 import { FaStar } from "react-icons/fa";
 import { useDispatch, useSelector } from 'react-redux';
 import { useHref, useNavigate } from 'react-router-dom';
+import { addToCard } from '../../features/Store/reducers/admin.reducer.js';
 
 const ProductsPage = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -62,7 +63,7 @@ const ProductsPage = () => {
               </div>
               <div className='mt-2'><ProductSlider products={ProductsStore} /></div>
             </div>
-            <div className='flex flex-col gap-2 items-center'>
+            <div className='flex flex-col gap-2 items-center mb-5'>
               <div className='flex justify-between items-center w-full px-2 gap-2'>
                 <h1 className='text-xl sm:text-2xl font-sans font-bold text-[#413f3f]'>Accessories</h1>
                 <button onClick={accessoriesCategoryHandler} className='text-sm sm:text-xl text-blue-500 font-medium font-sans px-2 sm:px-5 py-2'>see all</button>
@@ -84,25 +85,32 @@ const ProductsPage = () => {
 export const Card = ({ details }) => {
   const nevigate = useNavigate()
   const dispath = useDispatch()
+  const user = useSelector(state => state.auth.user)
   const targetHref = useHref(`/products`)
   const productsCardHandler = (details) => nevigate(`/products/${details?._id}`)
-  const addToCardHandler = () => dispath(setProductCardCount())
+  const addToCardHandler = (productsId) => {
+    console.log(productsId)
+    dispath(addToCard({
+      productsId: productsId,
+      bearerToken: user?.accessToken
+    }))
+  }
 
   return (
     <>
       {/* Responsive update: card is fluid on mobile, keeps a comfortable minimum height, and remains capped on larger screens. */}
-      <div className='w-full max-w-[15rem] min-w-0 min-h-[20rem] sm:h-[22rem] rounded-[10px] flex flex-col shadow-2xl overflow-hidden'>
+      <div className='w-full max-w-[15rem] min-w-0 min-h-[22rem] sm:h-[22rem] rounded-[10px] flex flex-col shadow-2xl overflow-hidden'>
         <div className='w-full h-8 rounded-tl-[10px] rounded-tr-[10px] flex justify-between items-center px-2 shrink-0'>
           <div className='min-w-0'><h1 className='text-[12px] sm:text-[15px] font-bold font-sans text-[#5f5353] truncate'>{details?.category}</h1></div>
           <button className='text-[19px] py-1 shrink-0' aria-label='Add to wishlist'><FaRegHeart className='text-[#3d3b3b]' /></button>
         </div>
         {/* Responsive update: image height is smaller on phones so the title, price and ADD button have enough room. */}
         <div onClick={() => productsCardHandler(details)} className='w-full aspect-square max-h-40 sm:h-40 flex justify-center bg-[#eceaea] shrink-0 cursor-pointer'>
-          <img src={details?.image} alt={details?.title || 'Product'} className='w-full h-full object-contain' />
+          <img src={details?.image} alt={details?.title || 'Product'} className='w-full h-full object-contain hover:scale-105 transition-all duration-150 ease-in-out' />
         </div>
         <div className='flex-1 rounded-bl-[10px] rounded-br-[10px] flex flex-col gap-1 px-2 min-w-0 pt-1'>
           {/* Responsive update: rating badge now uses normal flow instead of negative positioning that could overlap mobile content. */}
-          <div className='flex justify-between items-center w-16 bg-[#dad6d6] px-2 py-1 rounded-[5px] shadow-2xl gap-[3.5px] shrink-0 -mt-5'>
+          <div className='flex justify-between items-center w-16 bg-[#dad6d6] px-2 py-1 rounded-[5px] shadow-2xl gap-[3.5px] shrink-0 -mt-5 z-20'>
             <h1 className='font-bold text-sm'>{details?.rating}</h1>
             <FaStar className='text-[green] text-sm' />
           </div>
@@ -115,7 +123,7 @@ export const Card = ({ details }) => {
           </div>
           {/* Responsive update: ADD button fills the card width and stays touch-friendly on small screens. */}
           <div className='flex justify-center items-center mt-auto pb-2 w-full'>
-            <button onClick={addToCardHandler} className='w-full py-2 px-2 bg-blue-500 text-white rounded-lg font-medium text-sm sm:text-base active:scale-95 transition-all active:bg-blue-600 active:shadow-2xl'>ADD</button>
+            <button onClick={() => addToCardHandler(details?._id)} className='w-full py-2 px-2 bg-blue-500 text-white rounded-lg font-medium text-sm sm:text-base active:scale-95 transition-all active:bg-blue-600 active:shadow-2xl mb-2'>ADD</button>
           </div>
         </div>
       </div>
