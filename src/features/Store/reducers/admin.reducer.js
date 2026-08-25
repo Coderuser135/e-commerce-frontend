@@ -178,7 +178,6 @@ export const createOrder = createAsyncThunk(
     try {
       const createOrderItem = await api.post(`/api/order`, inputData, {headers: {Authorization: `Bearer ${bearerToken}`}})
     } catch (error) {
-      
     }
   }
 )
