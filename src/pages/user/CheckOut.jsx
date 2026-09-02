@@ -44,7 +44,6 @@ const CheckOut = () => {
             phone
         }
     }
-    let paymentStatus = null
     const paymentHandler = async () => {
         if (!firstName || !lastName || !city || !address || !country || !pinCode || !state || !phone) {
             return toast.error("All order fields are required")
@@ -98,8 +97,6 @@ const CheckOut = () => {
         }
         const razorpay = new window.Razorpay(options)
         razorpay.open()
-        console.log("hello")
-        console.log(paymentStatus)
     }
     return (
         <div className='min-h-screen w-full flex flex-col items-center bg-[#ddc7f0]'>
