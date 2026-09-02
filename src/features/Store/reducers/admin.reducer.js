@@ -129,10 +129,7 @@ export const deleteAddToCard = createAsyncThunk(
 
 export const increaseAddToCardQuentity = createAsyncThunk(
   "admin/increaseAddToCardQuentity",
-  async (
-    { itemId, bearerToken },
-    { rejectWithValue, dispatch },
-  ) => {
+  async ({ itemId, bearerToken }, { rejectWithValue, dispatch }) => {
     console.log(itemId, bearerToken);
     try {
       const updateQuentity = await api.post(
@@ -143,7 +140,6 @@ export const increaseAddToCardQuentity = createAsyncThunk(
       if (updateQuentity.status === 200) {
         dispatch(getAddToCard({ bearerToken }));
       }
-      console.log(updateQuentity);
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -151,10 +147,7 @@ export const increaseAddToCardQuentity = createAsyncThunk(
 );
 export const decreaseAddToCardQuentity = createAsyncThunk(
   "admin/decreaseAddToCardQuentity",
-  async (
-    { itemId, bearerToken },
-    { rejectWithValue, dispatch },
-  ) => {
+  async ({ itemId, bearerToken }, { rejectWithValue, dispatch }) => {
     console.log(itemId, bearerToken);
     try {
       const updateQuentity = await api.post(
@@ -165,19 +158,41 @@ export const decreaseAddToCardQuentity = createAsyncThunk(
       if (updateQuentity.status === 200) {
         dispatch(getAddToCard({ bearerToken }));
       }
-      console.log(updateQuentity);
     } catch (error) {
       return rejectWithValue(error.message);
     }
   },
 );
 
-export const createOrder = createAsyncThunk(
+export const paymentVerify = createAsyncThunk(
   "admin/createOrder",
-  async ({inputData, bearerToken}, {rejectWithValue, dispatch}) => {
+  async ({ verifyData, bearerToken }, { rejectWithValue, dispatch }) => {
     try {
-      const createOrderItem = await api.post(`/api/order`, inputData, {headers: {Authorization: `Bearer ${bearerToken}`}})
+      const paymentVerifyItem = await api.post(`/api/order/payment/verify`, verifyData, {
+        headers: { Authorization: `Bearer ${bearerToken}` },
+      });
+      if (paymentVerifyItem.status === 201 || paymentVerifyItem.status === 200) {
+        dispatch(getAddToCard({ bearerToken }));
+        dispatch(getSingleOrder({ bearerToken }));
+        toast.success("Order created are sucessfully");
+      }
+      return paymentVerifyItem.status;
     } catch (error) {
+      return rejectWithValue(error.message);
     }
-  }
-)
+  },
+);
+
+export const getSingleOrder = createAsyncThunk(
+  "admin/getSingleOrder",
+  async ({ bearerToken }, { rejectWithValue, dispatch }) => {
+    try {
+      const getSingleOrderItem = await api.get("/api/order/myOrder", {
+        headers: { Authorization: `Bearer ${bearerToken}` },
+      });
+      return getSingleOrderItem.data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);

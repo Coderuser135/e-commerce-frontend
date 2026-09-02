@@ -28,6 +28,7 @@ import AdminSingleProductsCategory from "../pages/admin/AdminSingleProductsCateg
 import EditPopup from "../components/EditPopup";
 import AddToCardPage from "../pages/user/AddToCardPage";
 import CheckOut from "../pages/user/CheckOut";
+import OrderPage from "../pages/user/OrderPage";
 
 const router = createBrowserRouter([
     {
@@ -111,6 +112,10 @@ const router = createBrowserRouter([
                             {
                                 path: "/checkout",
                                 element: <CheckOut />
+                            },
+                            {
+                                path: "/my-order",
+                                element: <OrderPage />
                             }
                         ]
                     }

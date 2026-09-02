@@ -2,6 +2,8 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { FiHome } from "react-icons/fi";
+import { TbCubePlus } from "react-icons/tb";
+import { SiHackthebox } from "react-icons/si";
 import { MdDashboard } from "react-icons/md";
 
 const AdminMenuBar = () => {
@@ -44,22 +46,42 @@ const AdminMenuBar = () => {
             </div>
           </div>
         </NavLink>
-        <div className='flex flex-col gap-1'>
-          <NavLink
-            to={'/adminPannel/create-products'}
-            className={({ isActive }) =>
-              `${isActive ? 'bg-blue-500' : ""} py-2 px-2 rounded-[10px]`
-            }
-          >Create Products</NavLink>
-        </div>
-        <div className='flex flex-col gap-1'>
-          <NavLink
-            to={'/adminPannel/all-products'}
-            className={({ isActive }) =>
-              `${isActive ? 'bg-blue-500' : ""} py-2 px-2 rounded-[10px]`
-            }
-          >All Products</NavLink>
-        </div>
+        <NavLink
+          to={'/adminPannel/create-products'}
+          className={({ isActive }) =>
+            `${isActive ? 'bg-blue-500 rounded-bl-xl rounded-tr-xl' : ""} font-serif`
+          }
+        >
+          <div className='w-full flex justify-center'>
+            <div className='flex items-center min-h-10 w-full rounded-[10px] gap-2 px-2 py-2'>
+              {/* Dashboard Logo */}
+              <div className='shrink-0'>
+                <h1><TbCubePlus className='text-xl sm:text-2xl' /></h1>
+              </div>
+              <div className='truncate'>
+                Create
+              </div>
+            </div>
+          </div>
+        </NavLink>
+        <NavLink
+          to={'/adminPannel/all-products'}
+          className={({ isActive }) =>
+            `${isActive ? 'bg-blue-500 rounded-bl-xl rounded-tr-xl' : ""} font-serif`
+          }
+        >
+          <div className='w-full flex justify-center'>
+            <div className='flex items-center min-h-10 w-full rounded-[10px] gap-2 px-2 py-2'>
+              {/* Dashboard Logo */}
+              <div className='shrink-0'>
+                <h1><SiHackthebox className='text-xl sm:text-2xl' /></h1>
+              </div>
+              <div className='truncate'>
+                Products
+              </div>
+            </div>
+          </div>
+        </NavLink>
       </div>
     </>
   )

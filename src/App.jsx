@@ -5,7 +5,7 @@ import Footer from './components/Footer'
 import { getProducts } from './features/Store/reducers/products.reducer.js'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import { getAddToCard } from './features/Store/reducers/admin.reducer.js'
+import { getAddToCard, getSingleOrder } from './features/Store/reducers/admin.reducer.js'
 
 
 function App() {
@@ -13,15 +13,21 @@ function App() {
   const bearerToken = useSelector(state => state.auth.token)
   useEffect(() => {
     const productsItem = async () => {
-      const productsData = await dispatch(getProducts({bearerToken}))
+      const productsData = await dispatch(getProducts({ bearerToken }))
     }
     productsItem()
   }, [dispatch])
   useEffect(() => {
     const addToCard = async () => {
-      const productsData = await dispatch(getAddToCard({bearerToken}))
+      const productsData = await dispatch(getAddToCard({ bearerToken }))
     }
     addToCard()
+  }, [dispatch])
+  useEffect(() => {
+    const getOrderItem = async () => {
+      const getSingleOrderItem = await dispatch(getSingleOrder({ bearerToken }))
+    }
+    getOrderItem()
   }, [dispatch])
   return (
     <>

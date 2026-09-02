@@ -33,7 +33,6 @@ const Navbar = () => {
     const setShowAddToCardHandler = () => {
         setShowAddToCard(!showAddToCard)
     }
-    console.log(showCard)
     return (
         <>
             {/* Responsive fix: mobile uses two rows; desktop explicitly places logo, search and actions in columns 1, 2 and 3. */}

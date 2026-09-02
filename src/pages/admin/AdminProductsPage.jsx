@@ -51,7 +51,7 @@ const ProductsCard = ({ details }) => {
   return (
     <>
       {/* Responsive update: make the product card fluid within each grid column and cap its desktop width. */}
-      <div className='h-[22rem] w-full max-w-[15rem] min-w-0 mx-auto rounded-[10px] flex flex-col shadow-2xl overflow-hidden'>
+      <div className='h-78 w-full max-w-60 min-w-0 mx-auto rounded-[10px] flex flex-col shadow-2xl overflow-hidden'>
         {/* Add BookMark */}
         <div className='w-full h-8 rounded-tl-[10px] rounded-tr-[10px] flex justify-between items-center px-2 shrink-0'>
           <div>
@@ -100,10 +100,6 @@ const ProductsCard = ({ details }) => {
             <div>
               <h1 className='text-[#1a1919]'>₹{details?.discountPrice}</h1>
             </div>
-          </div>
-          {/* Responsive update: make the admin ADD button fill the card instead of using a fixed desktop-only width. */}
-          <div className='flex justify-center items-center mt-auto pb-2 w-full'>
-            <button className='w-full py-2 px-2 bg-blue-500 text-white rounded-lg font-medium active:scale-95 transition-all 2s active:bg-blue-600 active:shadow-2xl'>ADD</button>
           </div>
         </div>
       </div>
